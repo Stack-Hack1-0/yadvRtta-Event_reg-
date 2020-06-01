@@ -49,7 +49,7 @@ exports.loginUser = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.sendProtect = asyncCatch(async (req, res, next) => {
+exports.sendProtect = catchAsync(async (req, res, next) => {
   if (
     !req.headers.authorization ||
     !req.headers.authorization.startsWith("Bearer")
