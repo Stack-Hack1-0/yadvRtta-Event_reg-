@@ -43,13 +43,18 @@ exports.loginUser = catchAsync(async (req, res, next) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_PRIVATE_KEY, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
+
+  if (token) {
+    res.cookie("jwt", token);
+  }
+
   res.status(200).json({
     status: "success",
     token,
   });
 });
 
-exports.sendProtect = asyncCatch(async (req, res, next) => {
+exports.sendProtect = catchAsync(async (req, res, next) => {
   if (
     !req.headers.authorization ||
     !req.headers.authorization.startsWith("Bearer")
