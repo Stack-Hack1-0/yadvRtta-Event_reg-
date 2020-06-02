@@ -1,0 +1,72 @@
+.Reg{
+    display: inline-block;
+    padding: 40px;
+    margin-top: 50px;
+    background-color: rgba(0,0,0,0.8);
+
+}
+.Reg form{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+}
+.Reg form label{
+    font-size: 25px;
+    font-weight: 200;
+    font-family: monospace;
+    padding: 10px;
+    
+}
+.Reg form label:hover{
+    color: rgb(50, 235, 219);
+}
+.Reg form input{
+     border:none;
+     border-bottom: 0.3px solid white;
+     background-color: transparent;
+     padding: 5px;
+     padding-bottom: 15px;
+     
+}
+.Reg form input[type=text]:focus{
+    outline: none;
+    border-bottom: rgb(50, 235, 219);
+    background: transparent;
+    border: none;
+    color: rgb(50, 235, 219);
+    font-size: 20px;
+}
+
+
+.Reg form select{
+    border-top: hidden;
+     border-left: hidden;
+     border-right: hidden;
+     background-color: transparent;
+     padding: 5px;
+     padding-bottom: 15px;
+}
+.Reg form select option{
+    background-color: black;
+    color: white;
+    padding: 5px ;
+    
+}
+.Reg form button {
+    background-color: transparent;
+    border: none;
+    color: rgb(58, 141, 133);;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    
+}
+.Reg form button:hover{
+    color: rgb(50, 235, 219);
+    transform: translateY(-5px);
+    
+}
