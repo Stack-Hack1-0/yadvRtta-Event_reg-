@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
 import axios from "axios";
+import Styles from "./LoginForm.module.css";
 axios.defaults.withCredentials = true;
-// import Styles from "./LoginForm.module.css";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const isValidated = () => {
-    return email.length > 0 && password.length > 0;
-  };
-
   const isValidMail = () => {
     const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (!email) return true;
     return email.match(pattern);
+  };
+  const isValidated = () => {
+    return email.length > 0 && password.length > 0 && isValidMail();
   };
 
   const submitHandler = async (e) => {
@@ -37,16 +36,7 @@ const Login = (props) => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "500px",
-
-        margin: "auto",
-        border: "1px solid grey",
-        padding: "10px",
-        marginTop: "10px",
-      }}
-    >
+    <div className={Styles.Login}>
       <Form onSubmit={(e) => submitHandler(e)}>
         <Form.Group controlId="email">
           <Form.Label>Email address</Form.Label>
