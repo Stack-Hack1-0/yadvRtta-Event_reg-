@@ -3,14 +3,16 @@ const Event = require("../models/event");
 
 exports.postSubmit = (req,res,next) => {
     const name = req.body.name;
-    const mobile = req.body.mobile;
-    const email = req.body.email;
-    const id = req.file;
-    const regType = req.body.regType;
-    const ticket = req.body.ticket;
+    const mobile = req.body.mob;
+    const email = req.body.em;
+    const file = req.file;
+    const regType = req.body.reg;
+    const ticket = req.body.tik;
 
-    const idUrl = id.path;
+    console.log(name,mobile,email,file,regType,ticket);
 
+
+    let idUrl = file.path.replace("\\","/");
     const event = new Event({
         fullname: name,
         mobile: mobile,
@@ -20,27 +22,37 @@ exports.postSubmit = (req,res,next) => {
         ticket: ticket
     });
     event.save()
-    .then(res => {
+    .then(result => {
         console.log("created an event");
-        return event.find();
+        console.log(result);
+        res.send(result);
     })
-    .then(events => {
+    .catch(err => console.log(err));
+};
+
+exports.getEvent = (req,res,next) => {
+    const eventId = req.params.id;
+    Event.findOne({_id: eventId})
+    .then(events=> {
         console.log(events);
         res.send(events);
     })
     .catch(err => console.log(err));
 };
 
-exports.eventRegister = (req,res,next) => {
+exports.getUniqid = (req,res,next) => {
     const eventId = req.params.id;
-    Event.findOne({_id: eventId})
-    .then(events=> {
-        console.log(events);
-        events.uniqId = uniqid('event-','-reg');
-        return events.save();
+    let uniqId;
+    Event.findById({_id: eventId})
+    .then(event => {
+        console.log(event);
+        uniqId = uniqid('event-');
+        event.uniqId= uniqId;
+        return event.save();
     })
-    .then(res => {
-        console.login("regid created!");
+    .then(result => {
+        console.log(uniqId);
+        res.send(uniqId);
     })
     .catch(err => console.log(err));
-};
+}

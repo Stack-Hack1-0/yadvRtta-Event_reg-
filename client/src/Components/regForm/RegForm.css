@@ -21,12 +21,13 @@
 .Reg form label:hover{
     color: rgb(50, 235, 219);
 }
-.Reg form input{
+.Reg form input[type=text]{
      border:none;
      border-bottom: 0.3px solid white;
      background-color: transparent;
      padding: 5px;
      padding-bottom: 15px;
+     color: rgb(50, 235, 219);
      
 }
 .Reg form input[type=text]:focus{
@@ -36,8 +37,15 @@
     border: none;
     color: rgb(50, 235, 219);
     font-size: 20px;
+    
 }
-
+.Reg form input{
+    color: rgb(50, 235, 219);
+    border: none;
+    border-bottom: 0.3px solid white;
+    background: transparent;
+    padding-bottom: 15px;
+}
 
 .Reg form select{
     border-top: hidden;
@@ -46,12 +54,12 @@
      background-color: transparent;
      padding: 5px;
      padding-bottom: 15px;
+     color: rgb(50, 235, 219);
 }
 .Reg form select option{
     background-color: black;
-    color: white;
     padding: 5px ;
-    
+   
 }
 .Reg form button {
     background-color: transparent;
@@ -69,4 +77,18 @@
     color: rgb(50, 235, 219);
     transform: translateY(-5px);
     
+}
+
+
+.Reg form input[type=file] {
+    border: none;
+    padding: 20px;
+    background-color: transparent;
+    font-weight: bold;
+    font-family: monospace;
+
+}
+.Reg form input[type=file] button{
+    border: none;
+    padding: 20px;
 }

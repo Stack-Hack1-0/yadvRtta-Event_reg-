@@ -19,11 +19,12 @@ class RegForm extends Component {
         this.setState({[e.target.id]: e.target.value});
     }
     fileChangeHandler = e =>{
-        console.log(e);
+        console.log(e.target.files[0]);
         
          const imageFile = e.target.files[0];
-        if (!imageFile.name.match(/\.(jpeg|png)$/)) {
-            alert('cHOOSE A VALID FILE!!!');
+        if (!imageFile.name.match(/\.(jpeg|png|PNG|JPEG)$/)) {
+            alert('CHOOSE A VALID FILE!!!');
+            
         }
         else{
             this.setState({
@@ -34,20 +35,31 @@ class RegForm extends Component {
     onSubmit=e => {
         e.preventDefault();
 
-        const eventForm={
-            name : this.state.name,
-            mob : this.state.mob,
-            em : this.state.em,
-            reg : this.state.reg,
-            tik : this.state.tik,
-            fle : this.state.fle
-        }
-        axios.post('http://localhost:5000/eventreg',{eventForm})
+        const eventForm = new FormData();
+        eventForm.append('name',this.state.name);
+        eventForm.append('mob',this.state.mob);
+        eventForm.append('em',this.state.em);
+        eventForm.append('reg',this.state.reg);
+        eventForm.append('tik',this.state.tik);
+        eventForm.append('file',this.state.fle)
+        console.log(eventForm);
+        
+        // axios.post('http://localhost:5000/event/submit',{body: eventForm})
+        
+        let url = 'http://localhost:5000/event/submit';
+        
+        fetch(url,{
+            method:'POST',
+            body: eventForm
+        })
         .then(res => {
-            console.log(res);
-        }
-
-        )
+            // console.log(res);
+            return res.json();
+        })
+        .then(resData => {
+            console.log(resData)
+        })
+        .catch(err => console.log(err));
     }
    
     render(){
@@ -82,16 +94,15 @@ class RegForm extends Component {
                    <label>
                        UPLOAD YOUR ID:
                    </label>
-                   <input style={{display: 'none'}}
-                   type="file" 
+                   <input style={{fontFamily: 'monospace', fontWeight: 'bold'}}
+                   type="file" name="file"
                    onChange={this.fileChangeHandler}
-                   ref={fileInp => this.fileInp = fileInp}/>
-                    <button onClick = { ()=> this.fileInp.click()}>PICK FILE</button>
+                  />
                    <label>
                        REGISTRATION-TYPE:
                    </label>
                    <select value={this.state.reg} id="reg" onChange={this.onChange}>
-                       
+                       <option value="select">SELECT</option>
                        <option value="self">SELF</option>
                        <option value="grp">GROUP</option>
                        <option value="crp">CORPORATE</option>
@@ -101,7 +112,7 @@ class RegForm extends Component {
                        NO OF TICKETS:
                    </label>
                    {noOftik}
-                   <button onClick={this.onSbmit}>SUBMIT</button>
+                   <button onClick={this.onSubmit}>SUBMIT</button>
 
                 </form>
             </div>
