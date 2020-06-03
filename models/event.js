@@ -16,8 +16,7 @@ const eventSchema = new Schema({
         required: true
     },
     idUrl: {
-        type: String,
-        required: true
+        type: String
     },
     regType: {
         type: String,
@@ -31,7 +30,7 @@ const eventSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    uniqueId: String
+    uniqId: String
 });
 
 module.exports = mongoose.model('Event', eventSchema);
