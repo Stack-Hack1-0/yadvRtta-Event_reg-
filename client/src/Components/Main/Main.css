@@ -1,0 +1,22 @@
+.Main{
+    overflow: hidden;
+    padding-left: 500px;
+    padding-top: 500px;
+}
+.Main h1{
+    font-weight: 600;
+    font-size: 25px;
+    font-family: monospace;
+
+}
+
+.Main button{
+    background: rgba(221, 130, 25, 0.932);
+    border-radius: 30px;
+    outline: none;
+    padding: 10px;
+}
+.Main button:hover{
+    transform: scale(1.05)
+}
+

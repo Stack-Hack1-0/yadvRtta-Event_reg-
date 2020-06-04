@@ -1,15 +1,21 @@
-import React from "react";
+import React, { Component } from "react";
+import RegForm from "./components/regForm/RegForm";
 import "./App.css";
-import Login from "./components/LoginForm/LoginForm";
-import Chart from "./components/Chart/Chart";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-function App() {
-  return (
-    <div className="App">
-      <Chart />
-    </div>
-  );
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Main from "./components/Main/Main";
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Main}></Route>
+            <Route exact path="/register" component={RegForm}></Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
