@@ -1,0 +1,17 @@
+.Nav ul{
+    display: flex;
+    flex-direction: row;
+    float: right;
+    padding-right: 100px;
+    text-decoration: none;
+    
+}
+.Nav ul li{
+    padding: 20px;
+    list-style-type: none;
+    font-size: 17px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: rgb(231, 102, 16);
+
+}
