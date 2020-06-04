@@ -3,10 +3,13 @@ import Spinner from "../Spinner/Spinner";
 import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 import Chart from "../Chart/Chart";
+import FieldContainer from "../FieldContainer/FieldContainer";
+import Styles from "./Admin.module.css";
 
 const Admin = () => {
   const [isLoggedin, setLoggedin] = useState(false);
   const [isLoading, setLoading] = useState(true);
+  const [fieldType, setFieldType] = useState("all");
 
   const getLogin = async () => {
     try {
@@ -32,8 +35,9 @@ const Admin = () => {
     return <LoginForm submitHandler={() => setLoggedin(true)} />;
   }
   return (
-    <div>
-      <Chart />
+    <div className={Styles.admin}>
+      <Chart setType={(val) => setFieldType(val)} />
+      <FieldContainer type={fieldType} setType={(val) => setFieldType(val)} />
     </div>
   );
 };

@@ -11,7 +11,6 @@ exports.getSubmissionStat = catchAsync(async (req, res, next) => {
         numRegistrations: { $sum: 1 },
       },
     },
-    { $addFields: { total: { $sum: "$numRegistrations" } } },
   ]);
   console.log(stats);
   res.status(200).json({
@@ -23,7 +22,10 @@ exports.getSubmissionStat = catchAsync(async (req, res, next) => {
 });
 
 exports.getSubmissions = catchAsync(async (req, res, next) => {
-  const data = await Event.find({ regType: req.params.id.toLowerCase() });
+  let data;
+  if (req.params.id === "all") {
+    data = await Event.find();
+  } else data = await Event.find({ regType: req.params.id.toLowerCase() });
   res.status(200).json({
     status: "success",
     length: data.length,
