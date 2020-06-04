@@ -20,6 +20,7 @@ const eventSchema = new Schema({
   },
   regType: {
     type: String,
+    enum: ['self','group','corporate','others'],
     required: true,
   },
   ticket: {

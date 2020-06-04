@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import RegForm from "./components/regForm/RegForm";
+import RegForm from "./Components/regForm/RegForm";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Main from "./components/Main/Main";
+import Main from "./Components/Main/Main";
 class App extends Component {
   render() {
     return (
