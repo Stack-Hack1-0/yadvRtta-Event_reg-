@@ -1,4 +1,5 @@
 
+
 import React,{ Component } from 'react';
 import "./Main.css";
 import { Redirect } from 'react-router-dom';
@@ -31,7 +32,6 @@ class Main extends Component{
             </div>
 
         );
-    }
-}
+
 
 export default Main;

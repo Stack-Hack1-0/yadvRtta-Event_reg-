@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import "./RegForm.css";
 import { Redirect} from 'react-router-dom';
@@ -27,31 +28,34 @@ class RegForm extends Component {
   fileChangeHandler = (e) => {
     console.log(e.target.files[0], "file");
 
-    const imageFile = e.target.files[0];
+    let imageFile = e.target.files[0];
     if (!imageFile.name.match(/\.(jpeg|png|PNG|JPEG)$/)) {
       alert("CHOOSE A VALID FILE!!!");
     } else {
       this.setState({
         fle: e.target.files[0],
       });
-    }
-  };
-  onSubmit = (e) => {
-    e.preventDefault();
 
-    const eventForm = new FormData();
-    eventForm.append("name", this.state.name);
-    eventForm.append("mob", this.state.mob);
-    eventForm.append("em", this.state.em);
-    eventForm.append("reg", this.state.reg);
-    eventForm.append("tik", this.state.tik);
-    eventForm.append("file", this.state.fle);
-    console.log(eventForm);
 
-    // axios.post('http://localhost:5000/event/submit',{body: eventForm})
 
-    let url = "http://localhost:5000/event/submit";
 
+        
+       
+    onSubmit=e => {
+        e.preventDefault();
+
+        const eventForm = new FormData();
+        eventForm.append('name',this.state.name);
+        eventForm.append('mob',this.state.mob);
+        eventForm.append('em',this.state.em);
+        eventForm.append('reg',this.state.reg);
+        eventForm.append('tik',this.state.tik);
+        eventForm.append('file',this.state.fle)
+        console.log(eventForm);
+        
+        // axios.post('http://localhost:5000/event/submit',{body: eventForm})
+        
+        let url = 'http://localhost:5000/event/submit';
     fetch(url, {
       method: "POST",
       body: eventForm,
@@ -137,6 +141,6 @@ class RegForm extends Component {
       </div>
     );
   }
-}
+
 
 export default RegForm;

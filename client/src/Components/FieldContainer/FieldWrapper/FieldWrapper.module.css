@@ -1,0 +1,8 @@
+.wrapper {
+  width: 100%;
+  height: 90%;
+  overflow: scroll;
+  padding: 10px;
+  background-color: white;
+  justify-content: center;
+}
