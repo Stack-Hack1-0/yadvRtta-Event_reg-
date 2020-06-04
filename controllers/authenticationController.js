@@ -1,51 +1,47 @@
-const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
 const jwt = require("jsonwebtoken");
 const util = require("util");
-const crypto = require("crypto");
 
-exports.loginUser = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return next(new AppError("provide valid email or password", 400));
+exports.loginUser = (req, res, next) => {
+  const { user, password } = req.body;
+  if (!user || !password) {
+    return next(new AppError("provide valid user or password", 400));
   }
-  const user = await User.findOne({ email }).select("+password");
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError("incorrect email or password", 404));
+  if (user != "admin" || password != "password") {
+    return next(new AppError("incorrect user or password", 404));
   }
-  const token = jwt.sign({ id: user._id }, process.env.JWT_PRIVATE_KEY, {
+  const token = jwt.sign({ id: user }, process.env.JWT_PRIVATE_KEY, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
   if (token) {
     res.cookie("jwt", token);
   }
-
   res.status(200).json({
     status: "success",
     token,
   });
-});
+};
 
 exports.sendProtect = catchAsync(async (req, res, next) => {
+  let token;
   if (
-    !req.headers.authorization ||
-    !req.headers.authorization.startsWith("Bearer")
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    return next(new AppError("user is not logged in!"));
+    token = req.headers.authorization.split(" ")[1];
   }
 
+  if (!token) {
+    return next(
+      new AppError("You are not logged in! Please log in to get access.", 401)
+    );
+  }
   const decoded = await util.promisify(jwt.verify)(
-    req.headers.authorization.split(" ")[1],
+    token,
     process.env.JWT_PRIVATE_KEY
   );
   console.log(decoded);
-  const freshUser = await User.findById(decoded.id);
-  console.log(freshUser);
-  if (!freshUser) {
-    return next(new AppError("User does not exist!"));
-  }
-  req.user = freshUser;
   next();
 });

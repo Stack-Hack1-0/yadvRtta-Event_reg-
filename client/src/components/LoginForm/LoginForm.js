@@ -5,54 +5,55 @@ import Styles from "./LoginForm.module.css";
 axios.defaults.withCredentials = true;
 
 const Login = (props) => {
-  const [email, setEmail] = useState("");
+  const [user, setuser] = useState("");
   const [password, setPassword] = useState("");
 
-  const isValidMail = () => {
-    const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    if (!email) return true;
-    return email.match(pattern);
-  };
+  // const isValidMail = () => {
+  //   const pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  //   if (!user) return true;
+  //   return user.match(pattern);
+  // };
   const isValidated = () => {
-    return email.length > 0 && password.length > 0 && isValidMail();
+    return user.length > 0 && password.length > 0;
   };
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/users/signin",
+        "http://localhost:5000/api/v1/admin/signin",
         {
-          email,
+          user,
           password,
         }
       );
       console.log(res);
+      if (res && res.data.status === "success") props.submitHandler();
     } catch (er) {
       alert(er.response.data.message);
     }
-    setEmail("");
+    setuser("");
     setPassword("");
   };
 
   return (
     <div className={Styles.Login}>
       <Form onSubmit={(e) => submitHandler(e)}>
-        <Form.Group controlId="email">
-          <Form.Label>Email address</Form.Label>
+        <Form.Group controlId="user">
+          <Form.Label>User name</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            isInvalid={!isValidMail()}
+            type="text"
+            placeholder="Enter user"
+            value={user}
+            onChange={(e) => setuser(e.target.value)}
+            // isInvalid={!isValidMail()}
           />
           <FormControl.Feedback type="invalid">
-            Please provide a valid email
+            Please provide a valid user
           </FormControl.Feedback>
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We'll never share your user with anyone else.
           </Form.Text>
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
