@@ -47,7 +47,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const adminRouter = require("./routes/adminRoutes");
+//const adminRouter = require("./routes/adminRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -55,7 +55,7 @@ app.use(bodyParser.json());
 app.use(multer({ storage: storage, fileFilter: fileFilter }).single("file"));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use("/api/v1/admin", adminRouter);
+//app.use("/api/v1/admin", adminRouter);
 app.use("/event", eventRoutes);
 
 if (process.env.NODE_ENV == "production") {

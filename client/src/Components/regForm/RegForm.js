@@ -1,37 +1,46 @@
-import React ,{ Component }from 'react';
-import './RegForm.css';
-import axios from 'axios';
+
+import React, { Component } from "react";
+import "./RegForm.css";
+import { Redirect} from 'react-router-dom';
+//import axios from "axios";
 //import Animate from 'animate.css';
 
 class RegForm extends Component {
-    constructor(){
-        super();
-        this.state={
-            name:"",
-            mob:"",
-            em:"",
-            reg:"",
-            tik: 1,
-            fle: null
-        }
-    }
-    onChange =e =>{
-        this.setState({[e.target.id]: e.target.value});
-    }
-    fileChangeHandler = e =>{
-        console.log(e.target.files[0]);
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      mob: "",
+      em: "",
+      reg: "",
+      tik: 1,
+      fle: null,
+      previewId: null,
+      fetchedAll: false
+    };
+  }
+  componentDidMount(){
+      console.log(this.props);
+  }
+  onChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+  fileChangeHandler = (e) => {
+    console.log(e.target.files[0], "file");
+
+    let imageFile = e.target.files[0];
+    if (!imageFile.name.match(/\.(jpeg|png|PNG|JPEG)$/)) {
+      alert("CHOOSE A VALID FILE!!!");
+    } else {
+      this.setState({
+        fle: e.target.files[0],
+      });
+
+
+
+
         
-        let imageFile = e.target.files[0];
-        if (!imageFile.name.match(/\.(jpeg|png|PNG|JPEG)$/)) {
-            alert('CHOOSE A VALID FILE!!!');
-            
-        }
-        else{
-            this.setState({
-                fle :imageFile
-            })
-        }
-    }
+       
     onSubmit=e => {
         e.preventDefault();
 
@@ -47,74 +56,91 @@ class RegForm extends Component {
         // axios.post('http://localhost:5000/event/submit',{body: eventForm})
         
         let url = 'http://localhost:5000/event/submit';
-        
-        axios({
-            url: url,
-            method: 'POST',
-            data: eventForm
-        })
-        .then(res => {
-            console.log(res);
-        })
-        .catch(err => console.log(err));
-    }
-   
-    render(){
-        let noOftik=null;
-        if(this.state.reg==="self")
-        {
-            noOftik= <input type="number"value={this.state.tik} id="tik" />
-        }
-        else
-        {
-            noOftik= <input type="number"value={this.state.tik} id="tik" onChange={this.onChange}/>
-        }
-        return(
+    fetch(url, {
+      method: "POST",
+      body: eventForm,
+    })
+      .then((res) => {
+        // console.log(res);
+        return res.json();
+      })
+      .then((resData) => {
+        console.log(resData);
+        console.log(resData.data._id);
+        this.setState({previewId: resData.data._id});
+        this.setState({fetchedAll: true})
+      })
+      .catch((err) => console.log(err));
+  };
 
-            <div className="Reg">
-                
-                    
-                
-                <form>
-                   <label>
-                       FULL NAME:
-                   </label> 
-                   <input type="text" id="name" value={this.state.name} onChange={this.onChange}/>
-                   <label>
-                       MOBILE:
-                    </label>
-                    <input type="text" id="mob" value={this.state.mob} onChange={this.onChange}/>
-                   <label>
-                       E-mail:
-                   </label>
-                   <input type="text" id="em" value={this.state.em} onChange={this.onChange}/>
-                   <label>
-                       UPLOAD YOUR ID:
-                   </label>
-                   <input style={{fontFamily: 'monospace', fontWeight: 'bold'}}
-                   type="file" name="file"
-                   onChange={this.fileChangeHandler}
-                  />
-                   <label>
-                       REGISTRATION-TYPE:
-                   </label>
-                   <select value={this.state.reg} id="reg" onChange={this.onChange}>
-                       <option value="select">SELECT</option>
-                       <option value="self">SELF</option>
-                       <option value="group">GROUP</option>
-                       <option value="corporate">CORPORATE</option>
-                       <option value="others">OTHERS</option>
-                   </select>
-                   <label>
-                       NO OF TICKETS:
-                   </label>
-                   {noOftik}
-                   <button onClick={this.onSubmit}>SUBMIT</button>
-
-                </form>
-            </div>
-        );
+  render() {
+      let rnRender = null;
+    if(this.state.fetchedAll)
+    {
+        rnRender = <Redirect to = {"/preview/"+this.state.previewId}/>
     }
-}
+    let noOftik = null;
+    if (this.state.reg === "self") {
+      noOftik = <input type="number" value={this.state.tik} id="tik" />;
+    } else {
+      noOftik = (
+        <input
+          type="number"
+          value={this.state.tik}
+          id="tik"
+          onChange={this.onChange}
+        />
+      );
+    }
+    return (
+        <div className="MainReg">
+      <div className="Reg">
+        <form>
+          <label>FULL NAME:</label>
+          <input
+            type="text"
+            id="name"
+            value={this.state.name}
+            onChange={this.onChange}
+          />
+          <label>MOBILE:</label>
+          <input
+            type="text"
+            id="mob"
+            value={this.state.mob}
+            onChange={this.onChange}
+          />
+          <label>E-mail:</label>
+          <input
+            type="text"
+            id="em"
+            value={this.state.em}
+            onChange={this.onChange}
+          />
+          <label>UPLOAD YOUR ID:</label>
+          <input
+            style={{ fontFamily: "monospace", fontWeight: "bold" }}
+            type="file"
+            name="file"
+            onChange={this.fileChangeHandler}
+          />
+          <label>REGISTRATION-TYPE:</label>
+          <select value={this.state.reg} id="reg" onChange={this.onChange}>
+            <option value="select">SELECT</option>
+            <option value="self">SELF</option>
+            <option value="grp">GROUP</option>
+            <option value="crp">CORPORATE</option>
+            <option value="others">OTHERS</option>
+          </select>
+          <label>NO OF TICKETS:</label>
+          {noOftik}
+          <button onClick={this.onSubmit}>SUBMIT</button>
+          {rnRender}
+        </form>
+      </div>
+      </div>
+    );
+  }
+
 
 export default RegForm;

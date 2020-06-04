@@ -1,0 +1,40 @@
+.Preview{
+    background-image: url(../../Images/prfct.jpg);
+    min-height: 100vh;
+    overflow: hidden;
+}
+.Pre{
+    display: inline-block;
+    padding: 40px ;
+    background-color: rgba(0,0,0,0.7);
+}
+.Pre h2{
+    font-size: 30px;
+    font-family: monospace;
+    color: rgb(214, 195, 18);
+    font-weight: 400;
+}
+.Pre h1{
+    font-size: 25px;
+    font-weight: 300;
+    color: rgb(214, 195, 18);
+    transition: 0.3s;
+}
+.Pre h1:hover{
+    text-decoration: underline;
+    transform: translateY(1px);
+}
+.Pre button{
+    padding: 10px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgba(214, 195, 18,0.7);
+    font-size: 15px;
+    font-weight: 300;
+    font-family: sans-serif;
+    transition: 0.3s;
+}
+.Pre button:hover{
+    transform: translateY(2px);
+
+}
