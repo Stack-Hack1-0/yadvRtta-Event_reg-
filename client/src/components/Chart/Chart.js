@@ -1,10 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CanvasJSReact from "../../assets/canvasJs/canvasjs.react";
+import axios from "axios";
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Chart = () => {
   const [chart, setChart] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+  const [dataPoints, setDataPoints] = useState(null);
+  const [total, setTotal] = useState(null);
+
+  const getData = async () => {
+    const res = await axios.get(
+      "http://localhost:5000/api/v1/admin/submissionStats"
+    );
+    const arr = [];
+    res.data.data.stats.forEach((el) => {
+      const label = el._id[0] + el._id.slice(1).toLowerCase();
+      arr.push({
+        y: el.numRegistrations,
+        label: label,
+        indexLabel: `${label}:${(el.numRegistrations / el.total) * 100}%`,
+      });
+    });
+    console.log(arr);
+    setDataPoints(arr);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const options = {
     animationEnabled: true,
     backgroundColor: "dimgrey",
@@ -16,29 +42,15 @@ const Chart = () => {
     data: [
       {
         type: "pie",
-        indexLabel: "{label}: {y}%",
         startAngle: -90,
-
-        dataPoints: [
-          {
-            y: 20,
-            label: "Airfare",
-            click: () => console.log("hello"),
-            cursor: "pointer",
-          },
-          { y: 24, label: "Food & Drinks" },
-          { y: 20, label: "Accomodation" },
-          { y: 14, label: "Transportation" },
-          { y: 12, label: "Activities" },
-          { y: 10, label: "Misc" },
-        ],
+        dataPoints,
       },
     ],
   };
 
   return (
     <div>
-      <CanvasJSChart options={options} onRef={(ref) => setChart(ref)} />
+      <CanvasJSChart options={options} />
     </div>
   );
 };

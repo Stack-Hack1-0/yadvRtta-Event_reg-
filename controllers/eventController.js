@@ -3,9 +3,27 @@ const Event = require("../models/event");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 
+exports.getSubmissionStat = catchAsync(async (req, res, next) => {
+  const stats = await Event.aggregate([
+    {
+      $group: {
+        _id: { $toUpper: "$regType" },
+        numRegistrations: { $sum: 1 },
+      },
+    },
+    { $addFields: { total: { $sum: "$numRegistrations" } } },
+  ]);
+  console.log(stats);
+  res.status(200).json({
+    status: "success",
+    data: {
+      stats,
+    },
+  });
+});
+
 exports.getSubmissions = catchAsync(async (req, res, next) => {
-  const data = await Event.find();
-  console.log(data);
+  const data = await Event.find({ regType: req.params.id.toLowerCase() });
   res.status(200).json({
     status: "success",
     length: data.length,
