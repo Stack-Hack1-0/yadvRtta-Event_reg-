@@ -1,46 +1,53 @@
-const uniqid = require('uniqid');
+const uniqid = require("uniqid");
 const Event = require("../models/event");
+const AppError = require("../utils/appError");
+const catchAsync = require("../utils/catchAsync");
 
-exports.postSubmit = (req,res,next) => {
-    const name = req.body.name;
-    const mobile = req.body.mobile;
-    const email = req.body.email;
-    const id = req.file;
-    const regType = req.body.regType;
-    const ticket = req.body.ticket;
+exports.getSubmissions = catchAsync(async (req, res, next) => {
+  const data = await Event.find();
+  console.log(data);
+  res.status(200).json({
+    status: "success",
+    length: data.length,
+    data,
+  });
+});
 
-    const idUrl = id.path;
+exports.postSubmit = catchAsync(async (req, res, next) => {
+  const event = {
+    fullname: req.body.name,
+    mobile: req.body.mob,
+    email: req.body.em,
+    idUrl: req.file.path.replace("\\", "/"),
+    regType: req.body.reg,
+    ticket: req.body.tik,
+  };
+  const data = await Event.create(event);
+  console.log(data);
+  res.status(200).json({
+    status: "success",
+    data,
+  });
+});
 
-    const event = new Event({
-        fullname: name,
-        mobile: mobile,
-        email: email,
-        idUrl: idUrl,
-        regType: regType,
-        ticket: ticket
-    });
-    event.save()
-    .then(res => {
-        console.log("created an event");
-        return event.find();
-    })
-    .then(events => {
-        console.log(events);
-        res.send(events);
-    })
-    .catch(err => console.log(err));
-};
+exports.getEvent = catchAsync(async (req, res, next) => {
+  const event = await Event.findById(req.params.id);
+  res.status(200).json({
+    status: "success",
+    data: event,
+  });
+});
 
-exports.eventRegister = (req,res,next) => {
-    const eventId = req.params.id;
-    Event.findOne({_id: eventId})
-    .then(events=> {
-        console.log(events);
-        events.uniqId = uniqid('event-','-reg');
-        return events.save();
-    })
-    .then(res => {
-        console.login("regid created!");
-    })
-    .catch(err => console.log(err));
-};
+exports.getUniqid = catchAsync(async (req, res, next) => {
+  const event = await Event.findById(req.params.id);
+  if (!event) {
+    return next(new AppError("Event not found!", 404));
+  }
+  const uniqId = uniqid("event-");
+  event.uniqId = uniqId;
+  await event.save({ validateBeforeSave: false });
+  res.status(200).json({
+    status: "success",
+    uniqId,
+  });
+});

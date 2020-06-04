@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const authenticationController = require("../controllers/authenticationController");
+const eventController = require("../controllers/eventController");
 
-router.post("/signup", authenticationController.signupUser);
 router.post("/signin", authenticationController.loginUser);
-router.get("/verifyemail/:token", authenticationController.verifyEmail);
+router.get(
+  "/submissions",
+  authenticationController.sendProtect,
+  eventController.getSubmissions
+);
 
 module.exports = router;
