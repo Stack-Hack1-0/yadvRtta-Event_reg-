@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./RegForm.css";
-import axios from "axios";
+import { Redirect} from 'react-router-dom';
+//import axios from "axios";
 //import Animate from 'animate.css';
 
 class RegForm extends Component {
@@ -13,7 +14,12 @@ class RegForm extends Component {
       reg: "",
       tik: 1,
       fle: null,
+      previewId: null,
+      fetchedAll: false
     };
+  }
+  componentDidMount(){
+      console.log(this.props);
   }
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -56,11 +62,19 @@ class RegForm extends Component {
       })
       .then((resData) => {
         console.log(resData);
+        console.log(resData.data._id);
+        this.setState({previewId: resData.data._id});
+        this.setState({fetchedAll: true})
       })
       .catch((err) => console.log(err));
   };
 
   render() {
+      let rnRender = null;
+    if(this.state.fetchedAll)
+    {
+        rnRender = <Redirect to = {"/preview/"+this.state.previewId}/>
+    }
     let noOftik = null;
     if (this.state.reg === "self") {
       noOftik = <input type="number" value={this.state.tik} id="tik" />;
@@ -75,6 +89,7 @@ class RegForm extends Component {
       );
     }
     return (
+        <div className="MainReg">
       <div className="Reg">
         <form>
           <label>FULL NAME:</label>
@@ -116,7 +131,9 @@ class RegForm extends Component {
           <label>NO OF TICKETS:</label>
           {noOftik}
           <button onClick={this.onSubmit}>SUBMIT</button>
+          {rnRender}
         </form>
+      </div>
       </div>
     );
   }

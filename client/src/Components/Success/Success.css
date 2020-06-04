@@ -1,0 +1,25 @@
+.Suc{
+    background-image: url(../../Images/prfct.jpg);
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.Success{
+    display: inline-block;
+    padding: 30px;
+    margin-top: 100px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+}
+.Success h1{
+    font-size: 25px;
+    font-weight: 100;
+    font-family: monospace;
+    color: rgb(214, 195, 18);
+}
+.Success h2{
+    font-size: 20px;
+    font-weight: 200;
+    font-family: sans-serif;
+    color: rgb(214, 195, 18);
+}

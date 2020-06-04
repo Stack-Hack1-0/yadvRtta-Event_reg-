@@ -2,6 +2,8 @@
     overflow: hidden;
     padding-left: 500px;
     padding-top: 500px;
+    background-image: url('../../Images/prfct.jpg');
+    min-height: 100vh;
 }
 .Main h1{
     font-weight: 600;
