@@ -3,6 +3,7 @@ import RegForm from "./Components/regForm/RegForm";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Main from "./Components/Main/Main";
+
 import Admin from "./Components/Admin/Admin";
 import "bootstrap/dist/css/bootstrap.css";
 
