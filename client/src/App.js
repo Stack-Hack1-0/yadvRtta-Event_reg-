@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Main from "./Components/Main/Main.js";
 import Preview from "./Components/Preview/Preview";
+import RegistrationDetails from "./Components/RegistrationDetails/RegistrationDetails";
 import Success from "./Components/Success/Success";
 import Layout from "./Components/Layout/Layout";
 import Admin from "./Components/Admin/Admin";
@@ -26,6 +27,10 @@ class App extends Component {
                 component={RegistrationForm}
               ></Route>
               <Route path="/preview/:id" component={Preview}></Route>
+              <Route
+                path="/registration-details/:id"
+                component={RegistrationDetails}
+              ></Route>
               <Route path="/register/:id" component={Success}></Route>
             </Switch>
           </Layout>
