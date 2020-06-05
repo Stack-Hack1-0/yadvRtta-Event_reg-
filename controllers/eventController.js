@@ -19,7 +19,10 @@ const transporter = nodemailer.createTransport(
 );
 
 exports.getSubmissions = catchAsync(async (req, res, next) => {
-  const data = await Event.find();
+  let data;
+  if (req.params.id === "all") {
+    data = await Event.find();
+  } else data = await Event.find({ regType: req.params.id.toLowerCase() });
   console.log(data);
   res.status(200).json({
     status: "success",

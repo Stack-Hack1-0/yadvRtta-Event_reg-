@@ -29,6 +29,7 @@ const Chart = (props) => {
         )}%`,
         click: function (e) {
           console.log("hello");
+          console.log(el._id);
           props.setType(el._id);
         },
       });
