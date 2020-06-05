@@ -72,15 +72,15 @@ class Preview extends Component{
             <div className="Preview">
                 <div className="Pre">
                     <h2>CONTINUE TO REGISTER!!!</h2>
-                <h1>You have registered on {this.state.regDate}</h1>
-                <h1>NAME : {this.state.name}</h1>
+        <div className="ImageViewer">
+        <img src={this.state.image} width="300" height="300"/>
+        </div>
+        <h1>You have registered on {this.state.regDate}</h1>
+        <h1>NAME : {this.state.name}</h1>
         <h1>MOBILE : {this.state.mobile}</h1>
         <h1>e-Mail : {this.state.email}</h1>
         <h1>REGISTRATION-TYPE : {this.state.regType}</h1>
         <h1>TICKETS-BOOKED : {this.state.ticket}</h1>
-        <div className="ImageViewer">
-        
-        </div>
         <button onClick={this.onSubmit}>CONTINUE</button>
         {renNext}
             </div>
