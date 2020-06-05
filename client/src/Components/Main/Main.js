@@ -15,18 +15,28 @@ class Main extends Component {
     if (this.state.redirect) {
       renRedirect = <Redirect to="/register" />;
     }
-    return (
-      <div className="Main">
-        {/* <div className="Header">
-          <NavBar />
-        </div> */}
-        <div className="Register">
-          <h1>REGISTER SOON!!!!</h1>
-          <button onClick={this.onRegister}>REGISTER</button>
-          {renRedirect}
-        </div>
-      </div>
-    );
-  }
+
+    render(){
+         let renRedirect = null;
+        if(this.state.redirect){
+            renRedirect = <Redirect to="/register"/>
+        }
+        return(
+            
+            <div className="Main">
+               <div className="Header">
+                   <NavBar/>
+               </div>
+                <div className="Register">
+                <h1>REGISTER SOON!!!!
+                </h1>
+                <button onClick = {this.onRegister}>REGISTER</button>
+                {renRedirect}
+                </div>
+            </div>
+
+        );
+    }
 }
+
 export default Main;
