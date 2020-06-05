@@ -39,6 +39,9 @@ const Login = (props) => {
   return (
     <div className={Styles.Login}>
       <Form onSubmit={(e) => submitHandler(e)}>
+        <Form.Label style={{ fontWeight: "bold", fontSize: "large" }}>
+          Signin to Continue
+        </Form.Label>
         <Form.Group controlId="user">
           <Form.Label>User name</Form.Label>
           <Form.Control

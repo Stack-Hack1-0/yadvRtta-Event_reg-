@@ -1,7 +1,6 @@
-
 import React, { Component } from "react";
 import "./RegForm.css";
-import { Redirect} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 //import axios from "axios";
 //import Animate from 'animate.css';
 
@@ -16,11 +15,11 @@ class RegForm extends Component {
       tik: 1,
       fle: null,
       previewId: null,
-      fetchedAll: false
+      fetchedAll: false,
     };
   }
-  componentDidMount(){
-      console.log(this.props);
+  componentDidMount() {
+    console.log(this.props);
   }
   onChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
@@ -39,24 +38,18 @@ class RegForm extends Component {
   }
 
 
+    const eventForm = new FormData();
+    eventForm.append("name", this.state.name);
+    eventForm.append("mob", this.state.mob);
+    eventForm.append("em", this.state.em);
+    eventForm.append("reg", this.state.reg);
+    eventForm.append("tik", this.state.tik);
+    eventForm.append("file", this.state.fle);
+    console.log(eventForm);
 
-        
-       
-    onSubmit=e => {
-        e.preventDefault();
+    // axios.post('http://localhost:5000/event/submit',{body: eventForm})
 
-        const eventForm = new FormData();
-        eventForm.append('name',this.state.name);
-        eventForm.append('mob',this.state.mob);
-        eventForm.append('em',this.state.em);
-        eventForm.append('reg',this.state.reg);
-        eventForm.append('tik',this.state.tik);
-        eventForm.append('file',this.state.fle)
-        console.log(eventForm);
-        
-        // axios.post('http://localhost:5000/event/submit',{body: eventForm})
-        
-        let url = 'http://localhost:5000/event/submit';
+    let url = "http://localhost:5000/event/submit";
     fetch(url, {
       method: "POST",
       body: eventForm,
@@ -68,8 +61,8 @@ class RegForm extends Component {
       .then((resData) => {
         console.log(resData);
         console.log(resData.data._id);
-        this.setState({previewId: resData.data._id});
-        this.setState({fetchedAll: true})
+        this.setState({ previewId: resData.data._id });
+        this.setState({ fetchedAll: true });
       })
       .catch((err) => console.log(err));
   };
@@ -138,9 +131,12 @@ class RegForm extends Component {
           {rnRender}
         </form>
       </div>
+
       </div>
     );
   }
 }
 
+
 export default RegForm;
+

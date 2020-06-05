@@ -3,8 +3,7 @@
   position: relative;
   width: 64px;
   height: 64px;
-  margin:auto;
- 
+  margin: auto;
 }
 .Spinner div {
   animation: Spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -17,7 +16,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgb(230, 20, 90);
+  background: dimgray;
   margin: -3px 0 0 -3px;
 }
 .Spinner div:nth-child(1) {
