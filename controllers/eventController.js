@@ -63,8 +63,7 @@ exports.getUniqid = catchAsync(async (req, res, next) => {
   if (!event) {
     return next(new AppError("Event not found!", 404));
   }
-  const uniqId = uniqid("event-");
-  event.uniqId = uniqId;
+  event.uniqId = event._id;
   await event.save({ validateBeforeSave: false });
   res.status(200).json({
     status: "success",

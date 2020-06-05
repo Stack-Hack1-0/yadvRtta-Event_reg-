@@ -22,7 +22,7 @@ class Preview extends Component{
     onSubmit= (e) => {
         e.preventDefault();
         this.setState({success : true});
-        let url = "http://localhost:5000/event/register/"+this.props.match.params.id;
+        let url = "http://localhost:5000/event/success/"+this.props.match.params.id;
         fetch(url, {
             method: "GET",
           })
