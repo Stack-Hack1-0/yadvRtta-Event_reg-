@@ -21,7 +21,11 @@ const Toolbar = (props) => {
         </NavigationItem>
       </nav>
       <nav>
-        <NavigationItems showNav={props.show} />
+        <NavigationItems
+          showNav={props.show}
+          isLoggedin={props.isLoggedin}
+          ismin={props.ismin}
+        />
       </nav>
     </header>
   );

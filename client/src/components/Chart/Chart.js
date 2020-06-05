@@ -41,6 +41,9 @@ const Chart = (props) => {
 
   useEffect(() => {
     getData();
+    return () => {
+      // AbortController.abort();
+    };
   }, []);
 
   const options = {

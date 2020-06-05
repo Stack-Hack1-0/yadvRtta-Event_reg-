@@ -14,9 +14,15 @@ const navigationItems = (props) => (
     <NavigationItem link="/register" exact>
       REGISTER
     </NavigationItem>
-    <NavigationItem link="/admin" exact>
-      ADMIN
-    </NavigationItem>
+    {props.ismin && props.isLoggedin ? (
+      <NavigationItem link="/logout" exact>
+        LOGOUT
+      </NavigationItem>
+    ) : (
+      <NavigationItem link="/admin" exact>
+        ADMIN
+      </NavigationItem>
+    )}
 
     {/* <NavigationItem link="/radio" exact>
       RADIO

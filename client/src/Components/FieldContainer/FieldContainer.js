@@ -24,7 +24,6 @@ const Field = (props) => {
 const FieldContainer = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [value, setValue] = useState(props.value);
 
   const getData = async () => {
     const res = await axios.get(
@@ -36,7 +35,6 @@ const FieldContainer = (props) => {
   };
 
   useEffect(() => {
-    setValue(props.type);
     getData();
   }, [props]);
 
@@ -52,10 +50,9 @@ const FieldContainer = (props) => {
             id="cars"
             name="cars"
             onChange={(e) => {
-              setValue(e.target.value);
               props.setType(e.target.value);
             }}
-            value={value.toLowerCase()}
+            value={props.type.toLowerCase()}
           >
             <option value="all">All</option>
             <option value="self">Self</option>
