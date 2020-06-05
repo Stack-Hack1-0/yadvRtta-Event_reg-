@@ -1,31 +1,32 @@
-
-.Main{
-    overflow: hidden;
-    background-image: url('../../Images/prfct.jpg');
-    min-height: 100vh;
+.Main {
+  overflow: hidden;
+  background-image: url("../../Images/prfct.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
 }
-.Header{
-    padding-left: 600px;
-    cursor: pointer;
+.Header {
+  padding-left: 600px;
+  cursor: pointer;
 }
-.Register{
-    padding-top: 500px;
-    padding-left: 300px;
+.Register {
+  padding-top: 500px;
+  padding-left: 300px;
 }
-.Register button{
-    border-radius: 30px;
-    padding: 10px;
-    background-color: rgba(238, 146, 25, 0.87);
-    transition: 0.3s;
+.Register button {
+  border-radius: 30px;
+  padding: 10px;
+  background-color: rgba(238, 146, 25, 0.87);
+  transition: 0.3s;
 }
-.Register button:hover{
-    background-color: seashell;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.5);
+.Register button:hover {
+  background-color: seashell;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.5);
 }
-.Register h1{
-    font-size: 30px;
-    font-weight: 400;
-    font-family: monospace;
+.Register h1 {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: monospace;
 }
-
-

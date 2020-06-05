@@ -24,7 +24,9 @@ const Chart = (props) => {
       arr.push({
         y: el.numRegistrations,
         label: label,
-        indexLabel: `${label}:${(el.numRegistrations / total) * 100}%`,
+        indexLabel: `${label}:${((el.numRegistrations / total) * 100).toFixed(
+          2
+        )}%`,
         click: function (e) {
           console.log("hello");
           props.setType(el._id);
