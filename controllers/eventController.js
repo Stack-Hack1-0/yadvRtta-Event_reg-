@@ -25,6 +25,24 @@ exports.getSubmissions = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getSubmissionStat = catchAsync(async (req, res, next) => {
+  const stats = await Event.aggregate([
+    {
+      $group: {
+        _id: { $toUpper: "$regType" },
+        numRegistrations: { $sum: 1 },
+      },
+    },
+  ]);
+  console.log(stats);
+  res.status(200).json({
+    status: "success",
+    data: {
+      stats,
+    },
+  });
+});
+
 exports.postSubmit = catchAsync(async (req, res, next) => {
   const event = {
     fullname: req.body.name,
