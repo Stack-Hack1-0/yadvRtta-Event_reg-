@@ -6,33 +6,14 @@ import Chart from "../Chart/Chart";
 import FieldContainer from "../FieldContainer/FieldContainer";
 import Styles from "./Admin.module.css";
 
-const Admin = () => {
-  const [isLoggedin, setLoggedin] = useState(false);
-  const [isLoading, setLoading] = useState(true);
+const Admin = (props) => {
   const [fieldType, setFieldType] = useState("all");
 
-  const getLogin = async () => {
-    try {
-      const res = await axios.get(
-        "http://localhost:5000/api/v1/admin/isLoggedin"
-      );
-      if (res.data.isLoggedin) {
-        console.log("login");
-        setLoggedin(true);
-      }
-    } catch (er) {}
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    getLogin();
-  }, []);
-
-  if (isLoading) {
+  if (props.isLoading) {
     return <Spinner />;
   }
-  if (!isLoggedin) {
-    return <LoginForm submitHandler={() => setLoggedin(true)} />;
+  if (!props.isLoggedin) {
+    return <LoginForm submitHandler={() => props.setLoggedin()} />;
   }
   return (
     <div className={Styles.admin}>

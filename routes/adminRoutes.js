@@ -4,6 +4,7 @@ const router = express.Router();
 const authenticationController = require("../controllers/authenticationController");
 const eventController = require("../controllers/eventController");
 
+router.post("/logout", authenticationController.logout);
 router.post("/signin", authenticationController.loginUser);
 router.get(
   "/submissions/:id",

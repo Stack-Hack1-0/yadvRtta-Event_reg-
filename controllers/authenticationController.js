@@ -3,6 +3,13 @@ const AppError = require("../utils/appError");
 const jwt = require("jsonwebtoken");
 const util = require("util");
 
+exports.logout = (req, res, next) => {
+  res.clearCookie("jwt");
+  res.status(200).json({
+    status: "success",
+    data: null,
+  });
+};
 exports.loginUser = (req, res, next) => {
   const { user, password } = req.body;
   if (!user || !password) {
