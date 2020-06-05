@@ -48,7 +48,7 @@ exports.getSubmissionStat = catchAsync(async (req, res, next) => {
     },
   });
 });
-
+// controller for submit button in event registration form
 exports.postSubmit = catchAsync(async (req, res, next) => {
   const event = {
     fullname: req.body.name,
@@ -65,7 +65,7 @@ exports.postSubmit = catchAsync(async (req, res, next) => {
     data,
   });
 });
-
+// controller for preview after submit
 exports.getEvent = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
   res.status(200).json({
@@ -73,15 +73,13 @@ exports.getEvent = catchAsync(async (req, res, next) => {
     data: event,
   });
 });
-
+// controller for success screen after registration
 exports.getRegid = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
     return next(new AppError("Event not found!", 404));
   }
   const uniqId = event._id;
-  console.log(uniqId);
-  console.log(event.email);
   res.status(200).json({
     status: "success",
     uniqId,
@@ -99,7 +97,7 @@ exports.getRegid = catchAsync(async (req, res, next) => {
     `,
   });
 });
-
+//controller to get pass pdf from the email
 exports.getPass = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
   if (!event) {
@@ -112,21 +110,12 @@ exports.getPass = catchAsync(async (req, res, next) => {
   res.setHeader("Content-Disposition", 'inline: filename="' + passName + '"');
   pdfDoc.pipe(fs.createWriteStream(passPath));
   pdfDoc.pipe(res);
-  pdfDoc
-    .fontSize(30)
-    .fillColor("green")
-    .text("Event Pass", { underline: true, lineGap: 10 });
-  pdfDoc.image(event.idUrl, { width: 300, height: 300, align: "center" });
-
-  pdfDoc
-    .fontSize(15)
-    .fillColor("black")
-    .text("Pass No.  " + event._id);
+  pdfDoc.fontSize(30).fillColor("green").text("Event Pass", { underline: true, lineGap: 10 });
+  pdfDoc.image(event.idUrl, { width: 300, height: 300, align: "center" }).moveDown(0.5);
+  pdfDoc.fontSize(15).fillColor("black").text("Pass No:  " + event._id,{lineGap:5});
   pdfDoc.fontSize(15).text("Name:  " + event.fullname, { lineGap: 5 });
   pdfDoc.fontSize(15).text("email:  " + event.email, { lineGap: 5 });
-  pdfDoc
-    .fontSize(15)
-    .text("Registration-Type:  " + event.regType, { lineGap: 5 });
+  pdfDoc.fontSize(15).text("Registration-Type:  " + event.regType, { lineGap: 5 });
   pdfDoc.fontSize(15).text("Tickets booked:  " + event.ticket, { lineGap: 5 });
   pdfDoc.end();
 });
