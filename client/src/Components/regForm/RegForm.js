@@ -35,7 +35,8 @@ class RegForm extends Component {
       this.setState({
         fle: e.target.files[0],
       });
-
+    }
+  }
 
 
 
@@ -74,9 +75,8 @@ class RegForm extends Component {
   };
 
   render() {
-      let rnRender = null;
-    if(this.state.fetchedAll)
-    {
+    let rnRender = null;
+    if(this.state.fetchedAll){
         rnRender = <Redirect to = {"/preview/"+this.state.previewId}/>
     }
     let noOftik = null;
@@ -128,8 +128,8 @@ class RegForm extends Component {
           <select value={this.state.reg} id="reg" onChange={this.onChange}>
             <option value="select">SELECT</option>
             <option value="self">SELF</option>
-            <option value="grp">GROUP</option>
-            <option value="crp">CORPORATE</option>
+            <option value="group">GROUP</option>
+            <option value="corporate">CORPORATE</option>
             <option value="others">OTHERS</option>
           </select>
           <label>NO OF TICKETS:</label>
@@ -141,6 +141,6 @@ class RegForm extends Component {
       </div>
     );
   }
-
+}
 
 export default RegForm;
