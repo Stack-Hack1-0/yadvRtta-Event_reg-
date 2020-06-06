@@ -1,4 +1,4 @@
-@media (min-width:500px){
+
 .admin {
   display: flex;
   flex-direction: row;
@@ -6,9 +6,10 @@
   height: 100vmin;
   justify-content: space-around;
 }
-}
+@media (max-width:500px){
 .admin{
   flex-flow: column;
   width: 100%;
   min-height: 100vh;
+}
 }
