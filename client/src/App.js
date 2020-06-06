@@ -11,6 +11,7 @@ import Admin from "./Components/Admin/Admin";
 import axios from "axios";
 import Logout from "./Components/logoutmodal/logout";
 import RegistrationForm from "./Components/RegistrationForm/RegistrationForm";
+import Config from "./assets/config";
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
@@ -23,9 +24,7 @@ class App extends Component {
   }
   getLogin = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/v1/admin/isLoggedin"
-      );
+      const res = await axios.get(`${Config.LINK}/admin/isLoggedin`);
       if (res.data.isLoggedin) {
         console.log("login");
         this.setState({ isLoggedin: true, isLoading: false });

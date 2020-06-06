@@ -7,9 +7,33 @@ const sendgridTransport = require("nodemailer-sendgrid-transport");
 const Event = require("../models/event");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+const ical = require("ical-generator");
+// const cal = ical({ domain: "peakydevelopers.com", name: "peaky developers" });
 dotenv.config();
 
+// cal.createEvent({
+//   start: new Date().toISOString(),
+//   end: new Date().toISOString(),
+//   timestamp: new Date().toISOString(),
+//   summary: "Our bloody peaky Event",
+//   organizer: "peaky developers <peaky@developers.com>",
+// });
+
+// const p = __dirname + "/uploads/" + "invite.ics";
+
+// cal.saveSync(p);
+
+// let eve = cal.toString();
+
 const transporter = nodemailer.createTransport(
+  // {
+  //   service: "gmail",
+  //   auth: {
+  //     user: "b518051@iiit-bh.ac.in",
+  //     pass: "wrongpassword",
+  //   },
+  // }
+  // sendgridTransport({
   sendgridTransport({
     auth: {
       api_key:
@@ -21,8 +45,11 @@ const transporter = nodemailer.createTransport(
 exports.getSubmissions = catchAsync(async (req, res, next) => {
   let data;
   if (req.params.id === "all") {
-    data = await Event.find();
-  } else data = await Event.find({ regType: req.params.id.toLowerCase() });
+    data = await Event.find().sort({ regDate: "desc" });
+  } else
+    data = await Event.find({ regType: req.params.id.toLowerCase() }).sort({
+      regDate: "desc",
+    });
   console.log(data);
   res.status(200).json({
     status: "success",
@@ -88,6 +115,7 @@ exports.getRegid = catchAsync(async (req, res, next) => {
     to: event.email,
     from: "b518045@iiit-bh.ac.in",
     subject: "Successful Registration",
+    text: "Thanks for registrtaion !!",
     html: `
     <p>This email confirms your registration for Event Stack '20. </p>
     <p>Join the <a href="#">event</a> on Tuesday, 9th June at 3:00PM</p>
@@ -95,6 +123,10 @@ exports.getRegid = catchAsync(async (req, res, next) => {
     <p>Thank You and Stay Safe.</p>
     <p>Team Creator</p>
     `,
+    // icalEvent: {
+    //   content: eve,
+    //   method: "request",
+    // },
   });
 });
 //controller to get pass pdf from the email

@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//sebbo.net//ical-generator//EN
+NAME:peaky developers
+X-WR-CALNAME:peaky developers
+BEGIN:VEVENT
+UID:c9hn@peakydevelopers.com
+SEQUENCE:0
+DTSTAMP:20200606T111053Z
+DTSTART:20200606T111053Z
+DTEND:20200606T111053Z
+SUMMARY:Our bloody peaky Event
+ORGANIZER;CN="peaky developers":mailto:peaky@developers.com
+END:VEVENT
+END:VCALENDAR

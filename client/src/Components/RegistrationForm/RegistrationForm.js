@@ -72,6 +72,7 @@ const RegistrationForm = (props) => {
   if (preveiewId) return <Redirect to={"/preview/" + preveiewId} />;
 
   return (
+
     <div className={Styles.container}>
       <div className={Styles.row}>
       <Form onSubmit={handleSubmit}>

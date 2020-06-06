@@ -11,7 +11,7 @@ const Toolbar = (props) => {
       className={Styles.Toolbar}
       style={
         !props.isAdmin
-          ? { backgroundColor: "dimgray" }
+          ? { backgroundColor: "#808387" }
           : { backgroundColor: "transparent" }
       }
     >

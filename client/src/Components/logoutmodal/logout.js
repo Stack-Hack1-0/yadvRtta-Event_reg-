@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Spinner from "../Spinner/Spinner";
 import { Redirect } from "react-router-dom";
+import Config from "../../assets/config";
 
 class Logout extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Logout extends Component {
   }
   async componentDidMount() {
     try {
-      await axios.post("http://localhost:5000/api/v1/admin/logout");
+      await axios.post(`${Config.LINK}/admin/logout`);
       this.props.setLoggedin();
     } catch (er) {}
   }

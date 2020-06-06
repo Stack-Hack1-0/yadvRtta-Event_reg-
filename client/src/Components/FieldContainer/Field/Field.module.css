@@ -1,0 +1,11 @@
+.field {
+  width: 80%;
+  height: 30px;
+  border: black solid 1px;
+  margin: 20px auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 5px; */
+  padding: 0 5px;
+}
