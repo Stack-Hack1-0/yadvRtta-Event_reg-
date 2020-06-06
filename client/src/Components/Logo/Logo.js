@@ -4,7 +4,7 @@ import Styles from "./Logo.module.css";
 const logo = () => {
   return (
     <div className={Styles.Logo}>
-      <img src={require("./images/logo.PNG")} alt="justrelax"></img>
+      <img src={require("./images/logo3.jpg")} alt="event-Registration"></img>
     </div>
   );
 };
