@@ -1,3 +1,4 @@
+@media (min-width:500){
 .container{
   min-height: 100vh;
   background-image: url(../../Images/prfct.jpg);
@@ -13,3 +14,15 @@
   background: rgba(0,0,0,0.7);
   overflow: hidden;
 }
+}
+.container{
+  min-height: 100vh;
+  background-image: url('../../Images/prfct.jpg');
+}
+.row{
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  padding: 30px;
+}
+
+

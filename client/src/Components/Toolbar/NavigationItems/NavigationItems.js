@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
-import Logo from "../../Logo/Logo";
+//import Logo from "../../Logo/Logo";
 
 const navigationItems = (props) => (
   <div
