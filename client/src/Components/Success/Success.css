@@ -1,4 +1,4 @@
-@media (min-width: 500px){
+
 .Suc {
   background-image: url(../../Images/prfct.jpg);
   background-position: center;
@@ -52,7 +52,7 @@
 .Success button:hover {
   transform: translateY(2px);
 }
-}
+@media (max-width:500px){
 .Suc{
   min-height: 100vh;
   background-image: url(../../Images/prfct.jpg);
@@ -92,4 +92,5 @@
   transition: 0.3s;
   color: white;
   margin: 20px;
+}
 }
