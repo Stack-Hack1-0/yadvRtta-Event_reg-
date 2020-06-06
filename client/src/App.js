@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RegForm from "./Components/regForm/RegForm.js";
+//import RegForm from "./Components/regForm/RegForm.js";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Main from "./Components/Main/Main.js";

@@ -3,6 +3,7 @@ const AppError = require("../utils/appError");
 const jwt = require("jsonwebtoken");
 const util = require("util");
 
+// logout controller
 exports.logout = (req, res, next) => {
   res.clearCookie("jwt");
   res.status(200).json({
@@ -10,6 +11,7 @@ exports.logout = (req, res, next) => {
     data: null,
   });
 };
+// login form controller 
 exports.loginUser = (req, res, next) => {
   const { user, password } = req.body;
   if (!user || !password) {
@@ -21,7 +23,6 @@ exports.loginUser = (req, res, next) => {
   const token = jwt.sign({ id: user }, process.env.JWT_PRIVATE_KEY, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
-
   if (token) {
     res.cookie("jwt", token);
   }
@@ -30,17 +31,13 @@ exports.loginUser = (req, res, next) => {
     token,
   });
 };
-
+//checks the jwt token for authentication 
 exports.sendProtect = catchAsync(async (req, res, next) => {
   let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
     token = req.headers.authorization.split(" ")[1];
   }
-
-  if (!token) {
+  if(!token){
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );

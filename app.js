@@ -7,7 +7,6 @@ const app = express();
 const AppError = require("./utils/appError");
 const uniqid = require("uniqid");
 const cookieParser = require("cookie-parser");
-
 const globalErrorController = require("./controllers/globalErrorController");
 
 app.use(express.json());
