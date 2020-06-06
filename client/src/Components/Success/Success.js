@@ -30,16 +30,17 @@ class Success extends Component {
         <div className="Success">
           <h1>Registered Successfully!!!!</h1>
           <h2>Your Registration Id is : {this.state.registrationId}</h2>
-          <a
+          <div
             style={{
-              color: "blue",
+              color: "#639fff",
               cursor: "pointer",
-              margin: "5px",
+              fontSize: "small",
               textDecoration: "underline",
+              textTransform: "lowercase",
             }}
           >
             <AddToCalender event={this.event} title="add to calender" />
-          </a>
+          </div>
           <button onClick={() => this.props.history.push("/")}>
             RETURN TO HOME
           </button>

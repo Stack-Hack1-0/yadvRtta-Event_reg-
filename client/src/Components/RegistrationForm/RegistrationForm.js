@@ -72,102 +72,109 @@ const RegistrationForm = (props) => {
   if (preveiewId) return <Redirect to={"/preview/" + preveiewId} />;
 
   return (
-    <div className={Styles.container}>
-      <Form onSubmit={handleSubmit}>
-        <Form.Label style={{ fontWeight: "bold", fontSize: "large" }}>
-          Register to generate a Pass
-        </Form.Label>
-        <Form.Group controlId="name">
-          <Form.Label>Full name</Form.Label>
-          <Form.Control
-            required
-            autoFocus
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            isInvalid={!isValidName}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid name
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="formMobile">
-          <Form.Label>Mobile</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter your mobile no."
-            isInvalid={!isValidMobile()}
-            value={mob}
-            onChange={(e) => setMob(e.target.value)}
-          />
-          <FormControl.Feedback type="invalid">
-            Please provide a valid mobile no.
-          </FormControl.Feedback>
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter your Email"
-            isInvalid={!isValidMail()}
-            value={em}
-            onChange={(e) => setEm(e.target.value)}
-          />
-          <FormControl.Feedback type="invalid">
-            Please provide a valid email.
-          </FormControl.Feedback>
-        </Form.Group>
-        <Form.Group controlId="uploadId" style={{ margin: "auto" }}>
-          <Form.Label>Upload Your Id</Form.Label>
-          <Form.File
-            style={{ margin: "auto", width: "220px" }}
-            required
-            name="file"
-            label="File"
-            isInvalid={!isValidFile()}
-            onChange={(e) => setFle(e.target.files[0])}
-            feedback="file should be jpeg|png|PNG|JPEG"
-            // value={fle}
-          />
-          <FormControl.Feedback type="invalid">
-            Please provide a valid file.
-          </FormControl.Feedback>
-        </Form.Group>
-        <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>Select registration Type</Form.Label>
-          <Form.Control
-            as="select"
-            value={reg}
-            onChange={(e) => setReg(e.target.value)}
-            custom
-          >
-            <option value="self">SELF</option>
-            <option value="group">GROUP</option>
-            <option value="corporate">CORPORATE</option>
-            <option value="others">OTHERS</option>
-          </Form.Control>
-        </Form.Group>
-        <Form.Group controlId="name">
-          <Form.Label>No of tickets</Form.Label>
-          <Form.Control
-            required
-            type="number"
-            placeholder="Enter no. of tickets"
-            value={tik}
-            onChange={(e) => setTik(e.target.value)}
-            isInvalid={!(tik > 0)}
-          />
-          <FormControl.Feedback type="invalid">
-            Min ticket allowed 1
-          </FormControl.Feedback>
-        </Form.Group>
-        <Button disabled={!isDisabled()} variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+    <div
+      style={{
+        backgroundColor: "gray",
+        padding: "10px 0",
+      }}
+    >
+      <div className={Styles.container}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Label style={{ fontWeight: "bold", fontSize: "large" }}>
+            Register to generate a Pass
+          </Form.Label>
+          <Form.Group controlId="name">
+            <Form.Label>Full name</Form.Label>
+            <Form.Control
+              required
+              autoFocus
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              isInvalid={!isValidName}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid name
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="formMobile">
+            <Form.Label>Mobile</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Enter your mobile no."
+              isInvalid={!isValidMobile()}
+              value={mob}
+              onChange={(e) => setMob(e.target.value)}
+            />
+            <FormControl.Feedback type="invalid">
+              Please provide a valid mobile no.
+            </FormControl.Feedback>
+          </Form.Group>
+          <Form.Group controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Enter your Email"
+              isInvalid={!isValidMail()}
+              value={em}
+              onChange={(e) => setEm(e.target.value)}
+            />
+            <FormControl.Feedback type="invalid">
+              Please provide a valid email.
+            </FormControl.Feedback>
+          </Form.Group>
+          <Form.Group controlId="uploadId" style={{ margin: "auto" }}>
+            <Form.Label>Upload Your Id</Form.Label>
+            <Form.File
+              style={{ margin: "auto", width: "220px" }}
+              required
+              name="file"
+              label="File"
+              isInvalid={!isValidFile()}
+              onChange={(e) => setFle(e.target.files[0])}
+              feedback="file should be jpeg|png|PNG|JPEG"
+              // value={fle}
+            />
+            <FormControl.Feedback type="invalid">
+              Please provide a valid file.
+            </FormControl.Feedback>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Label>Select registration Type</Form.Label>
+            <Form.Control
+              as="select"
+              value={reg}
+              onChange={(e) => setReg(e.target.value)}
+              custom
+            >
+              <option value="self">SELF</option>
+              <option value="group">GROUP</option>
+              <option value="corporate">CORPORATE</option>
+              <option value="others">OTHERS</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="name">
+            <Form.Label>No of tickets</Form.Label>
+            <Form.Control
+              required
+              type="number"
+              placeholder="Enter no. of tickets"
+              value={tik}
+              onChange={(e) => setTik(e.target.value)}
+              isInvalid={!(tik > 0)}
+            />
+            <FormControl.Feedback type="invalid">
+              Min ticket allowed 1
+            </FormControl.Feedback>
+          </Form.Group>
+          <Button disabled={!isDisabled()} variant="success" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

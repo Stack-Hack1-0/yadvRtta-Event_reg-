@@ -3,17 +3,16 @@ import CanvasJSReact from "../../assets/canvasJs/canvasjs.react";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 import Styles from "./Chart.module.css";
+import Config from "../../assets/config";
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Chart = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [dataPoints, setDataPoints] = useState(null);
-
+  let sub = true;
   const getData = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/v1/admin/submissionStats"
-    );
+    const res = await axios.get(`${Config.LINK}/admin/submissionStats`);
     const arr = [];
     const total = res.data.data.stats.reduce(
       (acc, el) => acc + el.numRegistrations,
@@ -35,14 +34,17 @@ const Chart = (props) => {
       });
     });
     console.log(arr);
-    setDataPoints(arr);
-    setLoading(false);
+    if (sub) {
+      setDataPoints(arr);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    getData();
+    getData(sub);
     return () => {
       // AbortController.abort();
+      sub = false;
     };
   }, []);
 

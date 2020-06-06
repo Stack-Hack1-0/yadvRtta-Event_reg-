@@ -18,7 +18,7 @@
   .NavigationItem a:hover,
   .NavigationItem a:active,
   .NavigationItem a.active {
-    color: red;
+    color: #a1bae6;
   }
 }
 
