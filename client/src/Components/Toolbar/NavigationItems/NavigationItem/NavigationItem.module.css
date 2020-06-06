@@ -25,16 +25,18 @@
 @media (max-width: 500px) {
   .NavigationItem {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     align-items: center;
     display: flex;
     height: 100%;
+    top: 0;
   }
   .NavigationItem a {
     color: black;
     height: 100%;
     text-decoration: none;
-    padding: 16px 10px;
+    padding: 0;
     border-bottom: 4px solid transparent;
     display: block;
   }

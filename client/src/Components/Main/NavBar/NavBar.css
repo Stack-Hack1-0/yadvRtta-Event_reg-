@@ -1,3 +1,4 @@
+@media (min-width:500px){
 .Nav ul {
   display: flex;
   flex-direction: row;
@@ -12,4 +13,13 @@
   font-family: sans-serif;
   font-weight: 700;
   color: rgb(231, 102, 16);
+}
+}
+.Nav ul {
+  flex-flow: column;
+  padding: none;
+}
+.Nav ul li{
+  font-weight: 100;
+  font-size: 14px;
 }

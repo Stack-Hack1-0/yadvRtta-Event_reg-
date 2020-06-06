@@ -1,3 +1,4 @@
+@media (min-width:500px){
 .Preview {
   background-image: url(../../Images/prfct.jpg);
   min-height: 100vh;
@@ -28,6 +29,39 @@
   color: whitesmoke;
   transition: 0.3s;
   margin-bottom: 15px;
+}
+.Pre h1:hover {
+  /* text-decoration: underline; */
+  transform: translateY(1px);
+  cursor: initial;
+}
+.Pre button {
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  /* background-color: rgba(214, 195, 18, 0.7); */
+  background-color: green;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: sans-serif;
+  transition: 0.3s;
+}
+.Pre button:hover {
+  transform: translateY(2px);
+}
+}
+.Preview{
+  min-height: 100vh;
+  background-image: url('../../Images/prfct.jpg');
+}
+.Pre{
+  width: 100%;
+}
+.Pre h2{
+  font-size: 20px;
+  font-weight: 400;
+  color: whitesmoke;
+  font-family: monospace;
 }
 .Pre h1:hover {
   /* text-decoration: underline; */
