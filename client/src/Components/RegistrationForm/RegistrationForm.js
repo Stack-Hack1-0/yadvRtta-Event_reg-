@@ -73,12 +73,13 @@ const RegistrationForm = (props) => {
 
   return (
     <div className={Styles.container}>
+      <div className={Styles.row}>
       <Form onSubmit={handleSubmit}>
-        <Form.Label style={{ fontWeight: "bold", fontSize: "large" }}>
+        <Form.Label style={{ fontWeight: "bold" , fontFamily: "monospace",fontSize: "25px",background:"transparent" ,color:"white"}}>
           Register to generate a Pass
         </Form.Label>
         <Form.Group controlId="name">
-          <Form.Label>Full name</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>Full name</Form.Label>
           <Form.Control
             required
             autoFocus
@@ -87,13 +88,14 @@ const RegistrationForm = (props) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             isInvalid={!isValidName}
+            style={{ border:"none",borderRadius: "0px",borderBottom: "solid 1px",background:"transparent",color:"rgb(10,223,170)" }}
           />
           <Form.Control.Feedback type="invalid">
             Please provide a valid name
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group controlId="formMobile">
-          <Form.Label>Mobile</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>Mobile</Form.Label>
           <Form.Control
             required
             type="text"
@@ -101,13 +103,14 @@ const RegistrationForm = (props) => {
             isInvalid={!isValidMobile()}
             value={mob}
             onChange={(e) => setMob(e.target.value)}
+            style={{ border:"none",borderRadius: "0px",borderBottom: "solid 1px",background:"transparent",color:"rgb(10,223,170)" }}
           />
           <FormControl.Feedback type="invalid">
             Please provide a valid mobile no.
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>Email</Form.Label>
           <Form.Control
             required
             type="text"
@@ -115,15 +118,16 @@ const RegistrationForm = (props) => {
             isInvalid={!isValidMail()}
             value={em}
             onChange={(e) => setEm(e.target.value)}
+            style={{ border:"none",borderRadius:"0px",borderBottom: "solid 1px",background:"transparent",color:"rgb(10,223,170)" }}
           />
           <FormControl.Feedback type="invalid">
             Please provide a valid email.
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group controlId="uploadId" style={{ margin: "auto" }}>
-          <Form.Label>Upload Your Id</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>Upload Your Id</Form.Label>
           <Form.File
-            style={{ margin: "auto", width: "220px" }}
+            style={{ margin: "auto", width: "220px" , color:"rgb(10,223,170)"}}
             required
             name="file"
             label="File"
@@ -137,12 +141,13 @@ const RegistrationForm = (props) => {
           </FormControl.Feedback>
         </Form.Group>
         <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>Select registration Type</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>Select registration Type</Form.Label>
           <Form.Control
             as="select"
             value={reg}
             onChange={(e) => setReg(e.target.value)}
             custom
+            style={{ border:"none",borderRadius: "0px",borderBottom: "solid 1px",background:"transparent",color:"rgb(10,223,170)" }}
           >
             <option value="self">SELF</option>
             <option value="group">GROUP</option>
@@ -151,7 +156,7 @@ const RegistrationForm = (props) => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="name">
-          <Form.Label>No of tickets</Form.Label>
+          <Form.Label style={{ fontWeight: "200" , fontFamily: "monospace",fontSize: "15px",background:"transparent" ,color:"white"}}>No of tickets</Form.Label>
           <Form.Control
             required
             type="number"
@@ -159,16 +164,19 @@ const RegistrationForm = (props) => {
             value={tik}
             onChange={(e) => setTik(e.target.value)}
             isInvalid={!(tik > 0)}
+            style={{ border:"none",borderRadius: "0px",borderBottom: "solid 1px",background:"transparent",color:"rgb(10,223,170)" }}
           />
           <FormControl.Feedback type="invalid">
             Min ticket allowed 1
           </FormControl.Feedback>
         </Form.Group>
-        <Button disabled={!isDisabled()} variant="primary" type="submit">
-          Submit
+        <Button disabled={!isDisabled()} variant="primary" type="submit" style={{border:"none",borderRadius:"30px",padding:"10px"}}>
+          SUBMIT
         </Button>
       </Form>
+      </div>
     </div>
+    
   );
 };
 
