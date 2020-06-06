@@ -1,5 +1,14 @@
+@media (min-width:500px){
 .chart {
   width: 50%;
   height: 100%;
   background-color: dimgrey;
 }
+}
+.chart {
+  width:100%;
+  height: 50%;
+  background-color: dimgrey;
+  align-items: center;
+}
+
