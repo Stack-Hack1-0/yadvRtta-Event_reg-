@@ -4,9 +4,9 @@ Event registration app
 
 Preview app https://calm-anchorage-30458.herokuapp.com/
 
-Link to the presentation: https://docs.google.com/presentation/d/1nslarcENMLPXPxcXQPT93wVoX1BgW9E1gQygUsVH1xE/edit?usp=sharing
+Link to the presentation: https://docs.google.com/presentation/d/1_VVma39kdxGrYZQNyOkbPofPCfNRD1b0S7zGNnZm3SI/edit?usp=sharing
 
-Presentation also hosted in github here: https://github.com/deluminators/sanshrey/blob/master/sanshrey(6).pdf
+Presentation also hosted in github here: https://github.com/Stack-Hack1-0/stack_hackeventreg/blob/master/yadvRtta%20%20(1).pdf
 
 An app to register events. Add more description here
 
