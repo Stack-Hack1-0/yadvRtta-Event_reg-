@@ -80,6 +80,8 @@ npm run dev
 ```
 Now development server will open in your browser.
 
+Use userid:'admin' and password:'password' to log into admin section.
+
 ### Deploying
 
 A step by step series of examples to deploy the app to heroku
@@ -120,6 +122,7 @@ Heroku link will be open in your browser.
 * [git](https://guides.github.com/) - Used for managing workflow
 * [npm](https://docs.npmjs.com/) - Package manager
 * [heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) - Used for deploy
+* [nodemailer](https://nodemailer.com/about/) - Used for sending mail
 
 ## Versioning
 
