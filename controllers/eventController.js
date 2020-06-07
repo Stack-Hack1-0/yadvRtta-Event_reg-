@@ -1,5 +1,4 @@
 const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs");
 const pdfkit = require("pdfkit");
@@ -7,41 +6,16 @@ const sendgridTransport = require("nodemailer-sendgrid-transport");
 const Event = require("../models/event");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
-const ical = require("ical-generator");
-// const cal = ical({ domain: "peakydevelopers.com", name: "peaky developers" });
-dotenv.config();
-
-// cal.createEvent({
-//   start: new Date().toISOString(),
-//   end: new Date().toISOString(),
-//   timestamp: new Date().toISOString(),
-//   summary: "Our bloody peaky Event",
-//   organizer: "peaky developers <peaky@developers.com>",
-// });
-
-// const p = __dirname + "/uploads/" + "invite.ics";
-
-// cal.saveSync(p);
-
-// let eve = cal.toString();
 
 const transporter = nodemailer.createTransport(
-  // {
-  //   service: "gmail",
-  //   auth: {
-  //     user: "b518051@iiit-bh.ac.in",
-  //     pass: "wrongpassword",
-  //   },
-  // }
-  // sendgridTransport({
   sendgridTransport({
     auth: {
-      api_key:
-        "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",
+      api_key: process.env.MAIL_API_KEY,
     },
   })
 );
 
+//get all submissions from admin page
 exports.getSubmissions = catchAsync(async (req, res, next) => {
   let data;
   if (req.params.id === "all") {
@@ -58,6 +32,7 @@ exports.getSubmissions = catchAsync(async (req, res, next) => {
   });
 });
 
+//statistics of registrations for chart creation
 exports.getSubmissionStat = catchAsync(async (req, res, next) => {
   const stats = await Event.aggregate([
     {
@@ -75,6 +50,7 @@ exports.getSubmissionStat = catchAsync(async (req, res, next) => {
     },
   });
 });
+
 // controller for submit button in event registration form
 exports.postSubmit = catchAsync(async (req, res, next) => {
   const event = {
@@ -92,6 +68,7 @@ exports.postSubmit = catchAsync(async (req, res, next) => {
     data,
   });
 });
+
 // controller for preview after submit
 exports.getEvent = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
@@ -100,6 +77,7 @@ exports.getEvent = catchAsync(async (req, res, next) => {
     data: event,
   });
 });
+
 // controller for success screen after registration
 exports.getRegid = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
@@ -123,12 +101,9 @@ exports.getRegid = catchAsync(async (req, res, next) => {
     <p>Thank You and Stay Safe.</p>
     <p>Team Creator</p>
     `,
-    // icalEvent: {
-    //   content: eve,
-    //   method: "request",
-    // },
   });
 });
+
 //controller to get pass pdf from the email
 exports.getPass = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
@@ -142,12 +117,22 @@ exports.getPass = catchAsync(async (req, res, next) => {
   res.setHeader("Content-Disposition", 'inline: filename="' + passName + '"');
   pdfDoc.pipe(fs.createWriteStream(passPath));
   pdfDoc.pipe(res);
-  pdfDoc.fontSize(30).fillColor("green").text("Event Pass", { underline: true, lineGap: 10 });
-  pdfDoc.image(event.idUrl, { width: 300, height: 300, align: "center" }).moveDown(0.5);
-  pdfDoc.fontSize(15).fillColor("black").text("Pass No:  " + event._id,{lineGap:5});
+  pdfDoc
+    .fontSize(30)
+    .fillColor("green")
+    .text("Event Pass", { underline: true, lineGap: 10 });
+  pdfDoc
+    .image(event.idUrl, { width: 300, height: 300, align: "center" })
+    .moveDown(0.5);
+  pdfDoc
+    .fontSize(15)
+    .fillColor("black")
+    .text("Pass No:  " + event._id, { lineGap: 5 });
   pdfDoc.fontSize(15).text("Name:  " + event.fullname, { lineGap: 5 });
   pdfDoc.fontSize(15).text("email:  " + event.email, { lineGap: 5 });
-  pdfDoc.fontSize(15).text("Registration-Type:  " + event.regType, { lineGap: 5 });
+  pdfDoc
+    .fontSize(15)
+    .text("Registration-Type:  " + event.regType, { lineGap: 5 });
   pdfDoc.fontSize(15).text("Tickets booked:  " + event.ticket, { lineGap: 5 });
   pdfDoc.end();
 });

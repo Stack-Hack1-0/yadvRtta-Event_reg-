@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./RegistrationDetails.css";
-import { Redirect } from "react-router-dom";
-//import Image from '../../Utils/Image.js';
+import Config from "../../assets/config";
 
 class RegistrationDetails extends Component {
   constructor() {
@@ -20,8 +19,7 @@ class RegistrationDetails extends Component {
   }
 
   componentDidMount() {
-    let url =
-      "http://localhost:5000/event/preview/" + this.props.match.params.id;
+    let url = `${Config.LINK}/event/preview/` + this.props.match.params.id;
     fetch(url, {
       method: "GET",
     })
@@ -38,7 +36,7 @@ class RegistrationDetails extends Component {
           regType: resData.data.regType,
           ticket: resData.data.ticket,
           regDate: new Date(resData.data.regDate).toLocaleDateString("en-US"),
-          image: "http://localhost:5000/" + resData.data.idUrl,
+          image: Config.LINK + "/" + resData.data.idUrl,
           regId: resData.data._id,
         });
       })
@@ -46,12 +44,13 @@ class RegistrationDetails extends Component {
   }
   render() {
     return (
-      <div className="Preview">
-        <div className="Pre">
+      <div className="Regd">
+        <div className="Reg">
           <h2>Registration Details!!!</h2>
           <div className="ImageViewer">
             <img
               src={this.state.image}
+              alt="id"
               width="250"
               height="250"
               style={{ borderRadius: "20px", margin: "20px" }}

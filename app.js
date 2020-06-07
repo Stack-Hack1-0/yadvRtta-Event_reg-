@@ -52,18 +52,19 @@ const eventRoutes = require("./routes/eventRoutes");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer({ storage: storage, fileFilter: fileFilter }).single("file"));
-app.use("/images", express.static(path.join(__dirname, "images")));
-
-app.use("/api/v1/admin", adminRouter);
-app.use("/event", eventRoutes);
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(`${__dirname}/client/build`));
-
+  console.log("hello");
   app.get("/", (req, res, next) => {
     res.sendFile(`${__dirname}/client/build/index.html`);
   });
 }
+
+app.use("/api/v1/images", express.static(path.join(__dirname, "images")));
+
+app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/event", eventRoutes);
 
 app.use("*", (req, res, next) => {
   next(new AppError(`Cant find ${req.originalUrl}`));

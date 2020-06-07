@@ -5,7 +5,6 @@ import NavigationItem from "./NavigationItems/NavigationItem/NavigationItem";
 import Logo from "../Logo/Logo";
 
 const Toolbar = (props) => {
-  console.log(props.isAdmin);
   return (
     <header
       className={Styles.Toolbar}

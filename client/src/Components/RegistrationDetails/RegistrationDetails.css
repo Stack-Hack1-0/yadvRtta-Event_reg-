@@ -1,5 +1,4 @@
-
-.Preview {
+.Regd {
   background-image: url(../../Images/prfct.jpg);
   min-height: 100vh;
   overflow: hidden;
@@ -7,22 +6,22 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.Pre {
+.Reg {
   display: inline-block;
   padding: 40px;
-  background-color: rgba(49, 48, 48, 0.9);
+  background-color: rgba(49, 48, 48, 0.95);
   width: 70%;
   margin: 10px;
   border-radius: 20px;
 }
-.Pre h2 {
+.Reg h2 {
   font-size: 30px;
   font-family: monospace;
   /* color: rgb(214, 195, 18); */
   color: whitesmoke;
   font-weight: 400;
 }
-.Pre h1 {
+.Reg h1 {
   font-size: 20px;
   font-weight: 300;
   /* color: rgb(214, 195, 18); */
@@ -30,12 +29,12 @@
   transition: 0.3s;
   margin-bottom: 15px;
 }
-.Pre h1:hover {
+.Reg h1:hover {
   /* text-decoration: underline; */
   transform: translateY(1px);
   cursor: initial;
 }
-.Pre button {
+.Reg button {
   padding: 10px;
   border-radius: 30px;
   border: none;
@@ -46,40 +45,40 @@
   font-family: sans-serif;
   transition: 0.3s;
 }
-.Pre button:hover {
+.Reg button:hover {
   transform: translateY(2px);
 }
-@media (max-width:500px){
-.Preview{
-  min-height: 100vh;
-  background-image: url('../../Images/prfct.jpg');
-}
-.Pre{
-  width: 100%;
-}
-.Pre h2{
-  font-size: 20px;
-  font-weight: 400;
-  color: whitesmoke;
-  font-family: monospace;
-}
-.Pre h1:hover {
-  /* text-decoration: underline; */
-  transform: translateY(1px);
-  cursor: initial;
-}
-.Pre button {
-  padding: 10px;
-  border-radius: 30px;
-  border: none;
-  /* background-color: rgba(214, 195, 18, 0.7); */
-  background-color: green;
-  font-size: 15px;
-  font-weight: 300;
-  font-family: sans-serif;
-  transition: 0.3s;
-}
-.Pre button:hover {
-  transform: translateY(2px);
-}
+@media (max-width: 500px) {
+  .Regview {
+    min-height: 100vh;
+    background-image: url("../../Images/prfct.jpg");
+  }
+  .Reg {
+    width: 100%;
+  }
+  .Reg h2 {
+    font-size: 20px;
+    font-weight: 400;
+    color: whitesmoke;
+    font-family: monospace;
+  }
+  .Reg h1:hover {
+    /* text-decoration: underline; */
+    transform: translateY(1px);
+    cursor: initial;
+  }
+  .Reg button {
+    padding: 10px;
+    border-radius: 30px;
+    border: none;
+    /* background-color: rgba(214, 195, 18, 0.7); */
+    background-color: green;
+    font-size: 15px;
+    font-weight: 300;
+    font-family: sans-serif;
+    transition: 0.3s;
+  }
+  .Reg button:hover {
+    transform: translateY(2px);
+  }
 }

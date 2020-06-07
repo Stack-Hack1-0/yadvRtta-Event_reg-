@@ -11,7 +11,8 @@ exports.logout = (req, res, next) => {
     data: null,
   });
 };
-// login form controller 
+
+// login form controller
 exports.loginUser = (req, res, next) => {
   const { user, password } = req.body;
   if (!user || !password) {
@@ -31,13 +32,17 @@ exports.loginUser = (req, res, next) => {
     token,
   });
 };
-//checks the jwt token for authentication 
+
+//checks the jwt token for authentication
 exports.sendProtect = catchAsync(async (req, res, next) => {
   let token;
-  if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
     token = req.headers.authorization.split(" ")[1];
   }
-  if(!token){
+  if (!token) {
     return next(
       new AppError("You are not logged in! Please log in to get access.", 401)
     );

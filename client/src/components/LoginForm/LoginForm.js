@@ -21,7 +21,6 @@ const Login = (props) => {
         user,
         password,
       });
-      console.log(res);
       if (res && res.data.status === "success") props.submitHandler();
     } catch (er) {
       alert(er.response.data.message);
