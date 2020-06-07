@@ -123,6 +123,8 @@ Heroku link will be open in your browser.
 * [npm](https://docs.npmjs.com/) - Package manager
 * [heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) - Used for deploy
 * [nodemailer](https://nodemailer.com/about/) - Used for sending mail
+* [sendgrid](https://sendgrid.com/)- API used for mail
+* [pdfKit](https://pdfkit.org/)- Used for making pdf
 
 ## Versioning
 
