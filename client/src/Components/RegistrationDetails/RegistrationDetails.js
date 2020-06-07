@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./RegistrationDetails.css";
-import { Redirect } from "react-router-dom";
-//import Image from '../../Utils/Image.js';
 
 class RegistrationDetails extends Component {
   constructor() {
@@ -46,12 +44,13 @@ class RegistrationDetails extends Component {
   }
   render() {
     return (
-      <div className="Preview">
-        <div className="Pre">
+      <div className="Regd">
+        <div className="Reg">
           <h2>Registration Details!!!</h2>
           <div className="ImageViewer">
             <img
               src={this.state.image}
+              alt="id"
               width="250"
               height="250"
               style={{ borderRadius: "20px", margin: "20px" }}

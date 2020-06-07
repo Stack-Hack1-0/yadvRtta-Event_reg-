@@ -10,43 +10,43 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 const Chart = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [dataPoints, setDataPoints] = useState(null);
-  let sub = true;
-  const getData = async () => {
-    const res = await axios.get(`${Config.LINK}/admin/submissionStats`);
-    const arr = [];
-    const total = res.data.data.stats.reduce(
-      (acc, el) => acc + el.numRegistrations,
-      0
-    );
-    res.data.data.stats.forEach((el) => {
-      const label = el._id[0] + el._id.slice(1).toLowerCase();
-      arr.push({
-        y: el.numRegistrations,
-        label: label,
-        indexLabel: `${label}:${((el.numRegistrations / total) * 100).toFixed(
-          2
-        )}%`,
-        click: function (e) {
-          console.log("hello");
-          console.log(el._id);
-          props.setType(el._id);
-        },
-      });
-    });
-    console.log(arr);
-    if (sub) {
-      setDataPoints(arr);
-      setLoading(false);
-    }
-  };
 
-  useEffect(() => {
-    getData(sub);
-    return () => {
-      // AbortController.abort();
-      sub = false;
-    };
-  }, []);
+  useEffect(
+    (val = { ...props }) => {
+      let sub = true;
+      const getData = async () => {
+        const res = await axios.get(`${Config.LINK}/admin/submissionStats`);
+        const arr = [];
+        const total = res.data.data.stats.reduce(
+          (acc, el) => acc + el.numRegistrations,
+          0
+        );
+        res.data.data.stats.forEach((el) => {
+          const label = el._id[0] + el._id.slice(1).toLowerCase();
+          arr.push({
+            y: el.numRegistrations,
+            label: label,
+            indexLabel: `${label}:${(
+              (el.numRegistrations / total) *
+              100
+            ).toFixed(2)}%`,
+            click: function (e) {
+              val.setType(el._id);
+            },
+          });
+        });
+        if (sub) {
+          setDataPoints(arr);
+          setLoading(false);
+        }
+      };
+      getData(sub);
+      return () => {
+        sub = false;
+      };
+    },
+    [props]
+  );
 
   const options = {
     animationEnabled: true,

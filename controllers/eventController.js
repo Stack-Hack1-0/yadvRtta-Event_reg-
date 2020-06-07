@@ -8,7 +8,7 @@ const Event = require("../models/event");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
 const ical = require("ical-generator");
-// const cal = ical({ domain: "peakydevelopers.com", name: "peaky developers" });
+const cal = ical({ domain: "peakydevelopers.com", name: "peaky developers" });
 dotenv.config();
 
 // cal.createEvent({
@@ -27,13 +27,17 @@ dotenv.config();
 
 const transporter = nodemailer.createTransport(
   // {
-  //   service: "gmail",
+  //   host: "smtp.gmail.com",
+  //   port: 465,
+  //   secure: true,
   //   auth: {
-  //     user: "b518051@iiit-bh.ac.in",
-  //     pass: "wrongpassword",
+  //     type: "OAuth2",
+  //     user: "b518045@iiit-bh.ac.in",
+  //     accessToken:
+  //       "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",
   //   },
   // }
-  // sendgridTransport({
+
   sendgridTransport({
     auth: {
       api_key:
@@ -129,6 +133,7 @@ exports.getRegid = catchAsync(async (req, res, next) => {
     // },
   });
 });
+
 //controller to get pass pdf from the email
 exports.getPass = catchAsync(async (req, res, next) => {
   const event = await Event.findById(req.params.id);
@@ -142,12 +147,22 @@ exports.getPass = catchAsync(async (req, res, next) => {
   res.setHeader("Content-Disposition", 'inline: filename="' + passName + '"');
   pdfDoc.pipe(fs.createWriteStream(passPath));
   pdfDoc.pipe(res);
-  pdfDoc.fontSize(30).fillColor("green").text("Event Pass", { underline: true, lineGap: 10 });
-  pdfDoc.image(event.idUrl, { width: 300, height: 300, align: "center" }).moveDown(0.5);
-  pdfDoc.fontSize(15).fillColor("black").text("Pass No:  " + event._id,{lineGap:5});
+  pdfDoc
+    .fontSize(30)
+    .fillColor("green")
+    .text("Event Pass", { underline: true, lineGap: 10 });
+  pdfDoc
+    .image(event.idUrl, { width: 300, height: 300, align: "center" })
+    .moveDown(0.5);
+  pdfDoc
+    .fontSize(15)
+    .fillColor("black")
+    .text("Pass No:  " + event._id, { lineGap: 5 });
   pdfDoc.fontSize(15).text("Name:  " + event.fullname, { lineGap: 5 });
   pdfDoc.fontSize(15).text("email:  " + event.email, { lineGap: 5 });
-  pdfDoc.fontSize(15).text("Registration-Type:  " + event.regType, { lineGap: 5 });
+  pdfDoc
+    .fontSize(15)
+    .text("Registration-Type:  " + event.regType, { lineGap: 5 });
   pdfDoc.fontSize(15).text("Tickets booked:  " + event.ticket, { lineGap: 5 });
   pdfDoc.end();
 });

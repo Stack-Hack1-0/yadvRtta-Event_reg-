@@ -10,19 +10,18 @@ import Config from "../../assets/config";
 const FieldContainer = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  let sub = true;
-  const getData = async () => {
-    const res = await axios.get(
-      `${Config.LINK}/admin/submissions/${props.type.toLowerCase()}`
-    );
-    console.log(res);
-    if (sub) {
-      setData(res.data.data);
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
+    let sub = true;
+    const getData = async () => {
+      const res = await axios.get(
+        `${Config.LINK}/admin/submissions/${props.type.toLowerCase()}`
+      );
+      if (sub) {
+        setData(res.data.data);
+        setLoading(false);
+      }
+    };
     getData();
     return () => {
       sub = false;

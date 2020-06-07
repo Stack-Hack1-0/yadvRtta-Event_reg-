@@ -76,6 +76,7 @@ class Preview extends Component {
           <div className="ImageViewer">
             <img
               src={this.state.image}
+              alt="id"
               width="250"
               height="250"
               style={{ borderRadius: "20px", margin: "20px" }}

@@ -26,7 +26,6 @@ class App extends Component {
     try {
       const res = await axios.get(`${Config.LINK}/admin/isLoggedin`);
       if (res.data.isLoggedin) {
-        console.log("login");
         this.setState({ isLoggedin: true, isLoading: false });
       }
     } catch (er) {}

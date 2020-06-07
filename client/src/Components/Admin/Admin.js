@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Spinner from "../Spinner/Spinner";
-import axios from "axios";
 import LoginForm from "../LoginForm/LoginForm";
 import Chart from "../Chart/Chart";
 import FieldContainer from "../FieldContainer/FieldContainer";

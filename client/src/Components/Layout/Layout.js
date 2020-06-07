@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Toolbar from "../Toolbar/Toolbar";
 import { withRouter } from "react-router-dom";
 const Layout = (props) => {
   const [isAdmin, setAdmin] = useState(window.location.pathname === "/");
   const [admin, setmin] = useState(window.location.pathname === "/admin");
   props.history.listen((location, action) => {
-    console.log("listended", location.pathname);
-
     setAdmin(location.pathname === "/");
     setmin(location.pathname === "/admin");
   });
