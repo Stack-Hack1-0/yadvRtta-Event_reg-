@@ -80,7 +80,7 @@ npm run dev
 ```
 Now development server will open in your browser.
 
-Use userid:'admin' and password:'password' to log into admin section.
+Use userid: ### 'admin' and password: ### 'password' to log into admin section.
 
 ### Deploying
 
