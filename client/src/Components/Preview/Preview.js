@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Preview.css";
 import { Redirect } from "react-router-dom";
+import Config from "../../assets//config";
 //import Image from '../../Utils/Image.js';
 
 class Preview extends Component {
@@ -22,8 +23,7 @@ class Preview extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({ success: true });
-    let url =
-      "http://localhost:5000/event/success/" + this.props.match.params.id;
+    let url = `${Config.LINK}/event/success/` + this.props.match.params.id;
     fetch(url, {
       method: "GET",
     })
@@ -39,8 +39,7 @@ class Preview extends Component {
 
   componentDidMount() {
     console.log(this.props.match.params.id);
-    let url =
-      "http://localhost:5000/event/preview/" + this.props.match.params.id;
+    let url = `${Config.LINK}/event/preview/` + this.props.match.params.id;
     fetch(url, {
       method: "GET",
     })
@@ -57,7 +56,7 @@ class Preview extends Component {
           regType: resData.data.regType,
           ticket: resData.data.ticket,
           regDate: new Date(resData.data.regDate).toLocaleDateString("en-US"),
-          image: "http://localhost:5000/" + resData.data.idUrl,
+          image: Config.LINK + "/" + resData.data.idUrl,
           regId: resData.data._id,
         });
       })

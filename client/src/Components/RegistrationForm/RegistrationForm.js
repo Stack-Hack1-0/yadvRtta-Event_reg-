@@ -3,6 +3,7 @@ import { Form, Button, FormControl } from "react-bootstrap";
 import Styles from "./RegistrationForm.module.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import Config from "../../assets/config";
 const RegistrationForm = (props) => {
   //state
 
@@ -55,10 +56,7 @@ const RegistrationForm = (props) => {
     };
     console.log(data);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/event/submit",
-        eventForm
-      );
+      const res = await axios.post(`${Config.LINK}/event/submit`, eventForm);
       setPreview(res.data.data._id);
     } catch (er) {
       console.log(er);
