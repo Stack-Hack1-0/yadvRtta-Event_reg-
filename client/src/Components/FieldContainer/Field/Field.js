@@ -1,14 +1,16 @@
 import React from "react";
 import Styles from "./Field.module.css";
+import { withRouter } from "react-router-dom";
 
 const Field = (props) => {
   return (
     <div
       className={Styles.field}
-      onClick={() =>
-        window.open(
-          `http://localhost:3001/registration-details/${props.regdNo}`
-        )
+      onClick={
+        () => props.history.push(`/registration-details/${props.regdNo}`)
+        // window.open(
+        //   `http://localhost:3001/registration-details/${props.regdNo}`
+        // )
       }
     >
       <div>{props.regdNo}</div>
@@ -18,4 +20,4 @@ const Field = (props) => {
   );
 };
 
-export default Field;
+export default withRouter(Field);

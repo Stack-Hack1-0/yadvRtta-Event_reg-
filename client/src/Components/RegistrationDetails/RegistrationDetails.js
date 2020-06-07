@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./RegistrationDetails.css";
+import Config from "../../assets/config";
 
 class RegistrationDetails extends Component {
   constructor() {
@@ -18,8 +19,7 @@ class RegistrationDetails extends Component {
   }
 
   componentDidMount() {
-    let url =
-      "http://localhost:5000/event/preview/" + this.props.match.params.id;
+    let url = `${Config.LINK}/event/preview/` + this.props.match.params.id;
     fetch(url, {
       method: "GET",
     })
@@ -36,7 +36,7 @@ class RegistrationDetails extends Component {
           regType: resData.data.regType,
           ticket: resData.data.ticket,
           regDate: new Date(resData.data.regDate).toLocaleDateString("en-US"),
-          image: "http://localhost:5000/" + resData.data.idUrl,
+          image: Config.Link + "/" + resData.data.idUrl,
           regId: resData.data._id,
         });
       })

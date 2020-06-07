@@ -11,42 +11,38 @@ const Chart = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [dataPoints, setDataPoints] = useState(null);
 
-  useEffect(
-    (val = { ...props }) => {
-      let sub = true;
-      const getData = async () => {
-        const res = await axios.get(`${Config.LINK}/admin/submissionStats`);
-        const arr = [];
-        const total = res.data.data.stats.reduce(
-          (acc, el) => acc + el.numRegistrations,
-          0
-        );
-        res.data.data.stats.forEach((el) => {
-          const label = el._id[0] + el._id.slice(1).toLowerCase();
-          arr.push({
-            y: el.numRegistrations,
-            label: label,
-            indexLabel: `${label}:${(
-              (el.numRegistrations / total) *
-              100
-            ).toFixed(2)}%`,
-            click: function (e) {
-              val.setType(el._id);
-            },
-          });
+  useEffect((val = { ...props }) => {
+    let sub = true;
+    const getData = async () => {
+      const res = await axios.get(`${Config.LINK}/admin/submissionStats`);
+      const arr = [];
+      const total = res.data.data.stats.reduce(
+        (acc, el) => acc + el.numRegistrations,
+        0
+      );
+      res.data.data.stats.forEach((el) => {
+        const label = el._id[0] + el._id.slice(1).toLowerCase();
+        arr.push({
+          y: el.numRegistrations,
+          label: label,
+          indexLabel: `${label}:${((el.numRegistrations / total) * 100).toFixed(
+            2
+          )}%`,
+          click: function (e) {
+            val.setType(el._id);
+          },
         });
-        if (sub) {
-          setDataPoints(arr);
-          setLoading(false);
-        }
-      };
-      getData(sub);
-      return () => {
-        sub = false;
-      };
-    },
-    [props]
-  );
+      });
+      if (sub) {
+        setDataPoints(arr);
+        setLoading(false);
+      }
+    };
+    getData();
+    return () => {
+      sub = false;
+    };
+  }, []);
 
   const options = {
     animationEnabled: true,
