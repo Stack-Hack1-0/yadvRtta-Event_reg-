@@ -31,14 +31,11 @@ class Preview extends Component {
         // console.log(res);
         return res.json();
       })
-      .then((resData) => {
-        console.log(resData);
-      })
+      .then((resData) => {})
       .catch((err) => console.log(err));
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     let url = `${Config.LINK}/event/preview/` + this.props.match.params.id;
     fetch(url, {
       method: "GET",
@@ -48,7 +45,6 @@ class Preview extends Component {
         return res.json();
       })
       .then((resData) => {
-        console.log(resData);
         this.setState({
           name: resData.data.fullname,
           mobile: resData.data.mobile,
@@ -67,7 +63,6 @@ class Preview extends Component {
     if (this.state.success) {
       renNext = <Redirect to={"/register/" + this.state.regId} />;
     }
-    console.log(this.state.image);
     return (
       <div className="Preview">
         <div className="Pre">

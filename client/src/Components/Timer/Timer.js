@@ -2,7 +2,7 @@ import React, { Component } from "react";
 class Timer extends Component {
   getTime = () => {
     let time =
-      new Date("jun 7, 2020 15:00:00").getTime() - new Date().getTime();
+      new Date("jun 9, 2020 15:00:00").getTime() - new Date().getTime();
     const hr = Math.floor(time / (3600 * 1000));
     time = time % (3600 * 1000);
     const min = Math.floor(time / (60 * 1000));

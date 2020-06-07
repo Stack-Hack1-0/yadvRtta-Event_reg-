@@ -12,15 +12,14 @@ class Success extends Component {
   }
 
   event = {
-    title: "Event Name",
-    description: "Event Description",
-    location: "Portland, OR",
-    startTime: "2020-06-16T20:15:00-04:00",
-    endTime: "2020-06-16T21:45:00-04:00",
+    title: "YadvRtta",
+    description: "Help you boost your skill!",
+    location: "Bhubaneswar, India",
+    startTime: "2020-06-09T20:15:00-04:00",
+    endTime: "2020-06-09T16:00:00-04:00",
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.setState({ registrationId: this.props.match.params.id });
   }
 
@@ -44,6 +43,9 @@ class Success extends Component {
           <button onClick={() => this.props.history.push("/")}>
             RETURN TO HOME
           </button>
+          <div style={{ color: "white", fontSize: "small" }}>
+            Check your mail for the pass.
+          </div>
         </div>
       </div>
     );

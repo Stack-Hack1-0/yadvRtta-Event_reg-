@@ -32,7 +32,6 @@ const RegistrationForm = (props) => {
   };
   const isValidFile = () => {
     if (!fle) return false;
-    console.log(fle);
     return fle.name.match(/\.(jpeg|png|PNG|JPEG)$/);
   };
 
@@ -45,7 +44,6 @@ const RegistrationForm = (props) => {
     eventForm.append("reg", reg);
     eventForm.append("tik", tik);
     eventForm.append("file", fle);
-    console.log(eventForm);
     const data = {
       mob,
       em,
@@ -54,7 +52,6 @@ const RegistrationForm = (props) => {
       tik,
       name,
     };
-    console.log(data);
     try {
       const res = await axios.post(`${Config.LINK}/event/submit`, eventForm);
       setPreview(res.data.data._id);

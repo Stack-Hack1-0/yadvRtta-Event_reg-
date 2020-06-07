@@ -14,7 +14,8 @@ const Main = () => {
     <div className="Main">
       <div className="Register">
         <div className="contain">
-          <h1 style={{ color: "#ffebb5" }}>REGISTER SOON!!!!</h1>
+          <h2 style={{ color: "#ffebb5" }}>YadVrtta to boost your Skill</h2>
+          <h1 style={{ color: "#ffebb5" }}>REGISTER SOON!!</h1>
           <Timer />
           <button onClick={() => setRedirect(true)}>REGISTER</button>
         </div>
