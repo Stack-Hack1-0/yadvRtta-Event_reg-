@@ -36,7 +36,7 @@ class RegistrationDetails extends Component {
           regType: resData.data.regType,
           ticket: resData.data.ticket,
           regDate: new Date(resData.data.regDate).toLocaleDateString("en-US"),
-          image: Config.Link + "/" + resData.data.idUrl,
+          image: Config.LINK + "/" + resData.data.idUrl,
           regId: resData.data._id,
         });
       })
